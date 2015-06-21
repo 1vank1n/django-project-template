@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 # from .models import Example
 # from .forms import ExampleForm
 
+def index(request, template):
+    return render(request, template, locals())
 
 # def sendemail(topic, content):
 #     subject, from_email = topic, 'noreply@il-studio.ru'
@@ -19,7 +21,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 #     return True
 
 
-# def index(request, template):
+# def example(request, template):
 #     example_list = Example.objects.filter(status=True).order_by('?')[:3]
 #     example_list_json = serializers.serialize("json", example_list, fields=('author', 'text', 'id', 'link'))
 
