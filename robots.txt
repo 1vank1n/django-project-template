@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /admin/
+Host: example.ru
+Sitemap: http://example.ru/sitemap.xml

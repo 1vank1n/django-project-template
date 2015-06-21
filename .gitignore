@@ -1,0 +1,12 @@
+# Created by https://www.gitignore.io
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+.DS_Store
+.env
+node_modules/
+media/
