@@ -8,7 +8,7 @@ from django.conf.urls import patterns, include, url
 #     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 # )
 
-urlpatterns += patterns('apps.main.views',
+urlpatterns = patterns('apps.main.views',
     url(r'^$', 'index', {'template': 'index.html'}, name='main.index'),
     # url(r'^exmple-slug/(?P<slug>[-\w]+)/$', 'example_list', {'template': 'example_list.html'}, name='main.example.list'),
     # url(r'^example-id/(?P<id>\d+)/$', 'example_list', {'template': 'example_list.html'}, name='main.example.list'),
