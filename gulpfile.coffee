@@ -11,10 +11,13 @@ cmq          = require 'gulp-combine-media-queries'
 minifyCss    = require 'gulp-minify-css'
 csscomb      = require 'gulp-csscomb'
 runSequence  = require 'run-sequence'
+uglify       = require 'gulp-uglify'
+concat       = require 'gulp-concat'
 
 # paths
 srcStyles = 'frontend/styles/base.css'
 distStyles = 'static/styles/'
+distScripts = 'static/scripts/'
 
 # tasks
 gulp.task 'styles', ->
@@ -29,6 +32,12 @@ gulp.task 'styles', ->
         .pipe gulpif !gutil.env.debug, minifyCss()
         .pipe gulpif gutil.env.csscomb, csscomb()
         .pipe gulp.dest distStyles
+
+gulp.task 'scripts', ->
+    gulp.src ['*.js'], cwd: 'frontend/scripts'
+        .pipe uglify()
+        .pipe concat 'scripts.js'
+        .pipe gulp.dest distScripts
 
 gulp.task 'imagemin', ->
     gulp.src [
@@ -46,11 +55,13 @@ gulp.task 'imagemin', ->
 gulp.task 'watch', ->
     global.watch = true
     gulp.watch 'frontend/styles/**/*', ['styles']
+    gulp.watch 'frontend/scripts/**/*', ['scripts']
     gulp.watch 'frontend/images/**/*', ['imagemin']
 
 gulp.task 'default', ->
     runSequence(
         'styles'
-        'watch'
+        'scripts'
         'imagemin'
+        'watch'
     )
