@@ -1,13 +1,13 @@
-staging:
-  type: deploy
-  script:
-    - bash deploy.sh
-  only:
-    - master
-
-# development:
+# staging:
 #   type: deploy
 #   script:
-#     - bash deploy-dev.sh
+#     - bash deploy.sh
 #   only:
-#     - dev
+#     - master
+
+# # development:
+# #   type: deploy
+# #   script:
+# #     - bash deploy-dev.sh
+# #   only:
+# #     - dev
