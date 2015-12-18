@@ -2,7 +2,7 @@
 
 It's very simple start point for django project.
 
-For `Django == 1.8.4`
+For `Django == 1.8.7`
 
 ## Install
 

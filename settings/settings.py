@@ -80,7 +80,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'ru-TU'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'Asia/Yekaterinburg'
 
