@@ -26,6 +26,7 @@ INSTALLED_APPS = (
 
     # apps
     'apps.main',
+    'apps.frontend',
 
     # 'django_cleanup',
 )
