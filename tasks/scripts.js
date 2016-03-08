@@ -8,6 +8,9 @@ import notifier from 'node-notifier';
 import plumber from 'gulp-plumber';
 import errorHandler from 'gulp-plumber-error-handler';
 import statsLogger from 'webpack-stats-logger';
+import notify from 'gulp-notify';
+
+import { destScripts, isDevelopment } from './consts.js'
 
 function runWebpack(watch = false) {
 	const webpackConfig = {
@@ -15,10 +18,10 @@ function runWebpack(watch = false) {
 		bail: false,
 		profile: true,
 		output: {
-			filename: 'scripts.js',
+			filename: 'base.js',
 			pathinfo: false
 		},
-		devtool: (gutil.env.sourcemaps || !gutil.env.debug) ? '#source-map' : '#cheap-module-eval-source-map',
+		devtool: (!isDevelopment) ? '#source-map' : 'eval',
 		debug: true,
 		resolve: {
 			modulesDirectories: [
@@ -27,24 +30,30 @@ function runWebpack(watch = false) {
 			extensions: ['.js', '']
 		},
 		module: {
-			preLoaders: [{
-				test: /\.js$/,
-				loader: 'source-map-loader'
-			}],
-			loaders: [{
-				test: /\.js$/,
-				loader: 'babel',
-				exclude: /node_modules/
-			}, {
-				test: /\.json$/,
-				loader: 'json'
-			}, {
-				test: /\.js$/,
-				loader: 'eslint-loader',
-				exclude: /node_modules/
-			}]
+			preLoaders: [
+				{
+					test: /\.js$/,
+					loader: 'source-map-loader'
+				}
+			],
+			loaders: [
+				{
+					test: /\.js$/,
+					loader: 'babel',
+					exclude: /node_modules/
+				},
+				{
+					test: /\.json$/,
+					loader: 'json'
+				},
+				{
+					test: /\.js$/,
+					loader: 'eslint-loader',
+					exclude: /node_modules/
+				}
+			]
 		},
-		plugins: gutil.env.debug ? [] : [
+		plugins: isDevelopment ? [] : [
 			new webpack.optimize.DedupePlugin(),
 			new webpack.optimize.UglifyJsPlugin({
 				compress: {
@@ -59,14 +68,22 @@ function runWebpack(watch = false) {
 			configFile: path.join(__dirname, '../.eslintrc'),
 			emitError: true,
 			emitWarning: true
-		}
+		},
+		externals: {
+			jquery: "$"
+		},
 	};
 
 	return gulp
-		.src('frontend/scripts/scripts.js')
-		.pipe(plumber({errorHandler: errorHandler('Error in \'scripts\' task')}))
+		.src('frontend/scripts/*')
+		.pipe(plumber({errorHandler: notify.onError(
+			(err) => ({
+				title: 'Scripts',
+				message: err.message
+			})
+		)}))
 		.pipe(webpackStream(webpackConfig, null, statsLogger))
-		.pipe(gulp.dest('static/scripts'));
+		.pipe(gulp.dest(destScripts));
 }
 
 gulp.task('scripts', () => {

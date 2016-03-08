@@ -7,6 +7,7 @@ gulp.task('watch', () => {
 
 	watch('frontend/styles/**/*', () => runSequence('styles'));
 	watch('frontend/images/**/*', () => runSequence('images'));
+	watch('frontend/fonts/**/*', () => runSequence('fonts'));
 	watch('frontend/images/icons/**/*.svg', () => runSequence('icons'));
 
 	gulp.start('scripts:watch');

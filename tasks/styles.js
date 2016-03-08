@@ -7,18 +7,23 @@ import stylus from 'gulp-stylus';
 import autoprefixer from 'autoprefixer-stylus';
 import gcmq from 'gulp-group-css-media-queries';
 import nano from 'gulp-cssnano';
-import csscomb from 'gulp-csscomb';
 import sourcemaps from 'gulp-sourcemaps';
 import errorHandler from 'gulp-plumber-error-handler';
+import notify from 'gulp-notify';
 
-import { distStyles } from './paths.js'
+import { destStyles, isDevelopment } from './consts.js'
 
 gulp.task('styles', () => (
 	gulp.src(['base.styl'], {
 			cwd: 'frontend/styles'
 		})
-		.pipe(plumber({errorHandler: errorHandler('Error in \'styles\' task')}))
-		.pipe(gulpif(gutil.env.debug, sourcemaps.init()))
+		.pipe(plumber({errorHandler: notify.onError(
+			(err) => ({
+				title: 'Styles',
+				message: err.message
+			})
+		)}))
+		.pipe(gulpif(isDevelopment, sourcemaps.init()))
 		.pipe(stylus({
 			use: [
 				rupture(),
@@ -26,9 +31,8 @@ gulp.task('styles', () => (
 			],
 			'include css': true
 		}))
-		.pipe(gulpif(!gutil.env.debug, gcmq()))
-		.pipe(gulpif(!gutil.env.debug, nano()))
-		.pipe(gulpif(gutil.env.csscomb, csscomb()))
-		.pipe(gulpif(gutil.env.debug, sourcemaps.write()))
-		.pipe(gulp.dest(distStyles))
+		.pipe(gulpif(!isDevelopment, gcmq()))
+		.pipe(gulpif(!isDevelopment, nano()))
+		.pipe(gulpif(isDevelopment, sourcemaps.write()))
+		.pipe(gulp.dest(destStyles))
 ));

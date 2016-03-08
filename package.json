@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf static/*",
+    "start": "NODE_ENV=development gulp",
+    "build": "npm run clean && NODE_ENV=production gulp build"
   },
   "author": "Ivan Lukyanets, ivan@il-studio.ru",
   "license": "Commercial",
@@ -28,6 +30,7 @@
     "gulp-html-prettify": "0.0.1",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^0.6.2",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-plumber-error-handler": "^1.0.0",
     "gulp-rename": "^1.2.2",

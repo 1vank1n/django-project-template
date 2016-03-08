@@ -4,7 +4,9 @@ import gulpif from 'gulp-if';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import errorHandler from 'gulp-plumber-error-handler';
-import path from 'path';
+import notify from 'gulp-notify';
+
+import { destImages } from './consts';
 
 const svgSpriteConfig = {
 	mode: {
@@ -25,5 +27,5 @@ gulp.task('icons', () => (
 		.pipe(gulpif(/\.svg$/, rename('icon.svg')))
 		.pipe(gulpif(/\.styl$/, rename('svg-size.styl')))
 		.pipe(gulpif(/\.styl$/, gulp.dest('frontend/styles/helpers')))
-		.pipe(gulpif(/\.svg$/, gulp.dest('static/images')))
+		.pipe(gulpif(/\.svg$/, gulp.dest(destImages)))
 ));

@@ -40,6 +40,8 @@
 
 	{% block head %}{% endblock head %}
 
+	<link rel="stylesheet" href="{% static "styles/base.css" %}">
+
 </head>
 <body>
 
@@ -47,6 +49,10 @@
 
 </body>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+
 	{% block footer_js %}{% endblock footer_js %}
+
+	<script src="{% static "scripts/base.js" %}"></script>
 
 </html>
