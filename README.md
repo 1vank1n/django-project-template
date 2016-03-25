@@ -14,3 +14,11 @@ For `Django == 1.9.3`
 
 1. python manage.py runserver (one terminal tab)
 2. gulp (other terminal tab)
+
+## Frontend
+
+### For development
+	npm start
+
+### For production
+    npm run build

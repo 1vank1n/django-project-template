@@ -22,6 +22,8 @@ globals:
     window: true
     global: true
     __dirname: true
+    $: false
+
 rules:
     arrow-parens: [1, "as-needed"]
     arrow-spacing: [1, { "before": true, "after": true }]

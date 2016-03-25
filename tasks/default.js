@@ -12,6 +12,16 @@ gulp.task('default', () => (
 	runSequence (
 		'styles:dependencies',
 		'images',
+		'fonts',
 		'watch'
+	)
+));
+
+gulp.task('build', () => (
+	runSequence (
+		'styles:dependencies',
+		'scripts',
+		'images',
+		'fonts'
 	)
 ));
