@@ -2,12 +2,12 @@
 
 It's very simple start point for django project.
 
-For `Django == 1.8.7`
+For `Django == 1.9.3`
 
 ## Install
 
 	django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip
-	pip install -r requirements.txt
+	pip install -r requirements/base.txt
 	npm i
 
 ## Usage

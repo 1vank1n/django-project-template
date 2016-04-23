@@ -7,8 +7,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^ckeditor/', include('ckeditor.urls')),
-    url(r'^', include('apps.main.urls', namespace='main')),
-    url(r'^templates/', include('apps.frontend.urls', namespace='frontend')),
+    url(r'^', include('applications.main.urls', namespace='main')),
+    url(r'^templates/', include('applications.frontend.urls', namespace='frontend')),
 ]
 
 urlpatterns += staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

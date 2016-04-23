@@ -8,7 +8,7 @@ ADMINS = (
     ('Ivan Lukyanets', 'ivan@il-studio.ru'),
 )
 
-INSTALLED_APPS = (
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -16,20 +16,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+]
 
-    ## 3rd packages
-    # 'adminsortable',
-    # 'treebeard',
-    # 'ckeditor',
-    # 'sorl.thumbnail',
-    # 'django_settings',
+THIRD_APPS = [
+    #
+]
 
-    # apps
-    'apps.main',
-    'apps.frontend',
+CUSTOM_APPS = [
+    'applications.main',
+    'applications.frontend',
+]
 
-    # 'django_cleanup',
-)
+INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CUSTOM_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
