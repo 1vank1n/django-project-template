@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from .views import FrontendView
 
 
-urlpatterns = patterns('apps.frontend.views',
+urlpatterns = [
     url(r'^(?P<slug>.*)$', FrontendView.as_view(), name='template'),
-)
+]
