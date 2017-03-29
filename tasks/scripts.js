@@ -1,16 +1,13 @@
 import path from 'path';
 import gulp from 'gulp';
-import gutil from 'gulp-util';
+import named from 'vinyl-named';
 import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
-import stylish from 'eslint/lib/formatters/stylish';
-import notifier from 'node-notifier';
 import plumber from 'gulp-plumber';
-import errorHandler from 'gulp-plumber-error-handler';
 import statsLogger from 'webpack-stats-logger';
 import notify from 'gulp-notify';
 
-import { destScripts, isDevelopment } from './consts.js'
+import {destScripts, isDevelopment} from './consts.js';
 
 function runWebpack(watch = false) {
 	const webpackConfig = {
@@ -18,10 +15,10 @@ function runWebpack(watch = false) {
 		bail: false,
 		profile: true,
 		output: {
-			filename: 'base.js',
+			filename: '[name].js',
 			pathinfo: false
 		},
-		devtool: (!isDevelopment) ? '#source-map' : 'eval',
+		devtool: (isDevelopment) ? '#source-map' : 'eval',
 		debug: true,
 		resolve: {
 			modulesDirectories: [
@@ -70,14 +67,21 @@ function runWebpack(watch = false) {
 			emitWarning: true
 		},
 		externals: {
-			jquery: "$"
-		},
+			jquery: '$'
+		}
 	};
 
 	return gulp
 		.src('frontend/scripts/*')
+		.pipe(named())
+		.pipe(notify({
+			message: 'Generated file: <%= file.relative %> @ <%= options.date %>',
+			templateOptions: {
+				date: new Date()
+			}
+		}))
 		.pipe(plumber({errorHandler: notify.onError(
-			(err) => ({
+			err => ({
 				title: 'Scripts',
 				message: err.message
 			})

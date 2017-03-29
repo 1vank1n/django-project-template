@@ -5,7 +5,7 @@ SECRET_KEY = "{{ secret_key }}"
 DEBUG = False
 ALLOWED_HOSTS = []
 ADMINS = (
-    ('Ivan Lukyanets', 'ivan@il-studio.ru'),
+    # ('Ivan Lukyanets', 'lukyanets.ivan@gmail.com'),
 )
 
 DJANGO_APPS = [
@@ -15,6 +15,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'django.contrib.sitemaps',
 ]
 
@@ -24,7 +25,6 @@ THIRD_APPS = [
 
 CUSTOM_APPS = [
     'applications.main',
-    'applications.frontend',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CUSTOM_APPS
@@ -45,7 +45,9 @@ ROOT_URLCONF = 'settings.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates/')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -53,7 +55,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'apps.main.processors.settings',
             ],
         },
     },
@@ -63,7 +64,7 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -76,7 +77,7 @@ DATABASES = {
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
+# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'ru-RU'
 
@@ -90,7 +91,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -134,6 +135,6 @@ MEDIA_URL = '/media/'
 
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass

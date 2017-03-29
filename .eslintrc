@@ -23,6 +23,8 @@ globals:
     global: true
     __dirname: true
     $: false
+    flexibility: false
+    $clamp: false
 
 rules:
     arrow-parens: [1, "as-needed"]
@@ -82,7 +84,6 @@ rules:
     no-else-return: 2
     no-empty: 2
     no-empty-character-class: 2
-    no-empty-label: 2
     no-eq-null: 2
     no-eval: 2
     no-ex-assign: 2
@@ -175,12 +176,11 @@ rules:
     semi: [2, "always"]
     semi-spacing: [2, {"before": false, "after": true}]
     sort-vars: 0
-    space-after-keywords: [2, "always"]
+    keyword-spacing: [2, {"before": true, "after": true}]
     space-before-blocks: [2, "always"]
     space-before-function-paren: [2, {"anonymous": "always", "named": "never"}]
     space-in-parens: 0
     space-infix-ops: 2
-    space-return-throw-case: 2
     space-unary-ops: [2, { "words": true, "nonwords": false }]
     spaced-comment: [1, "always"]
     use-isnan: 2

@@ -12,6 +12,8 @@
 	<meta name="HandheldFriendly" content="True">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	{% comment %}
 	<link sizes="57x57" href="{% static 'images/apple-touch-icon-57x57.png' %}" rel="apple-touch-icon">
 	<link sizes="114x114" href="{% static 'images/apple-touch-icon-114x114.png' %}" rel="apple-touch-icon">
 	<link sizes="72x72" href="{% static 'images/apple-touch-icon-72x72.png' %}" rel="apple-touch-icon">
@@ -35,8 +37,9 @@
 	<meta name="msapplication-square150x150logo" content="{% static 'images/mstile-150x150.png' %}">
 	<meta name="msapplication-wide310x150logo" content="{% static 'images/mstile-310x150.png' %}">
 	<meta name="msapplication-square310x310logo" content="{% static 'images/mstile-310x310.png' %}">
+	{% endcomment %}
 
-	<title>{% block full_title %}{% block title %}{% endblock %} – Tail of title{% endblock full_title %}</title>
+	<title>{% block full_title %}{% block title %}{% endblock %} — Tail of title{% endblock full_title %}</title>
 
 	{% block head %}{% endblock head %}
 
@@ -48,8 +51,6 @@
 	{% block content %}{% endblock content %}
 
 </body>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 
 	{% block footer_js %}{% endblock footer_js %}
 

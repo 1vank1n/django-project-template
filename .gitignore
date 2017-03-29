@@ -6,5 +6,5 @@ __pycache__/
 .env
 node_modules/
 media/
-*.sublime-workspace
 settings/local_settings.py
+db.sqlite3

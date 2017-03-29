@@ -1,16 +1,17 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import url
-from .views import IndexView
-# from .sitemap import SitemapWeekly, SitemapDaily
-
-# sitemaps = {'weekly':SitemapWeekly, 'daily':SitemapDaily}
-
-# urlpatterns = patterns ('',
-#     # sitemap
-#     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-# )
+from . import views
 
 urlpatterns = [
-    url(r'^$', IndexView.as_view(), name='index'),
-    # url(r'^exmple-slug/(?P<slug>[-\w]+)/$', 'example_list', {'template': 'example_list.html'}, name='main.example.list'),
-    # url(r'^example-id/(?P<id>\d+)/$', 'example_list', {'template': 'example_list.html'}, name='main.example.list'),
+    url(r'^$',
+        views.IndexView.as_view(),
+        name='index'),
+
+    # url(r'^exmple-slug/(?P<slug>[-\w]+)/$',
+    #     views.IndexView.as_view(),
+    #     name='example_detail'),
+
+    # url(r'^example-id/(?P<id>\d+)/$',
+    #     views.IndexView.as_view(),
+    #     name='example_detail'),
 ]

@@ -1,29 +1,36 @@
-# coding: utf-8
-import datetime
-from django.contrib.sitemaps import Sitemap
-from django.db.models import Q
-from itertools import chain
-from django.core.urlresolvers import reverse
-# from .models import Example
+# -*- coding: utf-8 -*-
+# from django.contrib.sitemaps import Sitemap
+# from itertools import chain
+# from django.core.urlresolvers import reverse
+
+# from applications.main.models import News
+
 
 # class SitemapWeekly(Sitemap):
 #     changefreq = 'weekly'
 #     priority = 0.8
 
 #     def items(self):
-#         service_list = Service.objects.filter(status=True)
-#         news_list = News.objects.filter(status=True)
-#         return list(chain(service_list, news_list))
+#         return list(
+#             chain(
+#                 News.published.all(),
+#                 ...
+#             )
+#         )
 
 #     def lastmod(self, obj):
 #         return obj.created
 
+
 # class SitemapDaily(Sitemap):
-#     changefreq = 'daily'
+#     changefreq = 'weekly'
 #     priority = 1
 
 #     def items(self):
-#         return ['main.index', 'main.service.all', 'main.personal.list', 'main.offer.list', 'main.review', 'main.contacts',]
+#         return [
+#             'main:index',
+#             ...
+#         ]
 
 #     def location(self, item):
 #         return reverse(item)

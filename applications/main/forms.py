@@ -1,12 +1,3 @@
-# coding: utf-8
-import os
-from django.conf import settings
+# -*- coding: utf-8 -*-
 from django import forms
-# from .models import Example
-
-
-# class ExampleForm(forms.ModelForm):
-#     class Meta:
-#         model = Example
-#         exclude = ('link', 'created', 'status',)
-#         fields = '__all__'
+from . import models

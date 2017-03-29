@@ -2,7 +2,7 @@
 
 It's very simple start point for django project.
 
-For `Django == 1.10.3`
+For `Django == 1.10.6` compatible with Python 2.7 & 3.6
 
 ## Install
 
@@ -36,7 +36,7 @@ Recommend installation virtualenv in `.env` folder in project folder.
 ---/main      - start app point that I offer for you
 /frontend     - folder for source "frontend" files
 ---/images    - gulp tasks look at this folder, files get->optimize->put to `/static/images/`
----/scripts   - gulp tasks look at this folder, files get->minify->concatenate->put to `/static/scripts/base.js`
+---/scripts   - gulp tasks look at this folder, files get->minify->put to `/static/scripts/`
 ---/styles    - gulp tasks look at this folder, get _common.styl->optimize->put to `/static/styles/base.css`
 /requirements - requirements for current project
 /settings     - django settings

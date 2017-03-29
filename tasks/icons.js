@@ -15,7 +15,7 @@ const svgSpriteConfig = {
 			bust: false,
 			sprite: '../images/icons.svg',
 			layout: 'horizontal',
-			prefix: '$',
+			prefix: '.',
 			dimensions: true,
 			render: {
 				styl: {
