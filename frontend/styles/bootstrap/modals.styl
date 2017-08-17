@@ -80,7 +80,8 @@
 .modal-header
   padding $modal-title-padding
   border-bottom 1px solid $modal-header-border-color
-  min-height ($modal-title-padding + $modal-title-line-height)
+  clearfix()
+
 // Close icon
 .modal-header .close
   margin-top -2px
@@ -101,7 +102,7 @@
   padding $modal-inner-padding
   text-align right // right align buttons
   border-top 1px solid $modal-footer-border-color
-  @extend .clearfix // clear it in case folks use .pull-* classes on buttons
+  clearfix() // clear it in case folks use .pull-* classes on buttons
 
   // Properly space out buttons
   .btn + .btn

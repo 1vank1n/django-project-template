@@ -1,5 +1,14 @@
-export const destStyles = 'static/styles/';
-export const destScripts = 'static/scripts/';
-export const destImages = 'static/images/';
-export const destFonts = 'static/fonts/';
-export const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+export const dist = 'static';
+export const distStyles = 'static/styles';
+export const distScripts = 'static/scripts';
+export const distImages = 'static/images';
+export const distFonts = 'static/fonts';
+
+export const src = 'frontend';
+export const srcStyles = 'frontend/styles';
+export const srcScripts = 'frontend/scripts';
+export const srcImages = 'frontend/images';
+export const srcFonts = 'frontend/fonts';
+export const srcTemplates = 'templates';
+
+export const isDevelopment = process.env.NODE_ENV === 'development';

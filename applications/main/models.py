@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import uuid
 from django.db import models
@@ -22,22 +21,22 @@ class Common(models.Model):
     PUBLISHED = 'published'
 
     CHOICES_STATUS = (
-        (DRAFT, u'Черновик'),
-        (PUBLISHED, u'Опубликовано'),
+        (DRAFT, 'Черновик'),
+        (PUBLISHED, 'Опубликовано'),
     )
 
     status = models.CharField(
-        u'Статус',
+        'Статус',
         choices=CHOICES_STATUS,
         default=PUBLISHED,
         max_length=50)
 
     created = models.DateTimeField(
-        u'Дата создания',
+        'Дата создания',
         auto_now_add=True)
 
     modified = models.DateTimeField(
-        u'Дата изменения',
+        'Дата изменения',
         auto_now=True)
 
     objects = models.Manager()
@@ -51,16 +50,16 @@ class Common(models.Model):
 class MetaFields(models.Model):
 
     meta_description = models.CharField(
-        u'META описание',
+        'META описание',
         max_length=200,
-        help_text=u'Рекомендуемая длина мета описания = 160 символов.',
+        help_text='Рекомендуемая длина мета описания = 160 символов.',
         blank=True,
         null=True)
 
     meta_keywords = models.CharField(
-        u'META ключевые слова',
+        'META ключевые слова',
         max_length=2500,
-        help_text=u'Укажите ключевые слова через запятую.',
+        help_text='Укажите ключевые слова через запятую.',
         blank=True,
         null=True)
 

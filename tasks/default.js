@@ -1,27 +1,27 @@
 import gulp from 'gulp';
 import runSequence from 'run-sequence';
+import browserSync from 'browser-sync';
 
-gulp.task('styles:dependencies', () => (
-	runSequence (
-		'icons',
-		'styles'
-	)
-));
+browserSync.create();
+module.exports.browserSync = browserSync;
+
+
+gulp.task('browserSync', () => {
+	browserSync.init({
+		proxy: 'localhost:8000',
+	});
+});
+
 
 gulp.task('default', () => (
-	runSequence (
-		'styles:dependencies',
-		'images',
+	runSequence(
+		'clean',
 		'fonts',
-		'watch'
-	)
-));
-
-gulp.task('build', () => (
-	runSequence (
-		'styles:dependencies',
+		'styles',
 		'scripts',
 		'images',
-		'fonts'
+		'svg',
+		'browserSync',
+		'watch',
 	)
 ));

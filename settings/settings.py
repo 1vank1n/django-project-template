@@ -5,7 +5,7 @@ SECRET_KEY = "{{ secret_key }}"
 DEBUG = False
 ALLOWED_HOSTS = []
 ADMINS = (
-    # ('Ivan Lukyanets', 'lukyanets.ivan@gmail.com'),
+    # ('Ivan Lukyanets', 'ivan@il-studio.ru'),
 )
 
 DJANGO_APPS = [
@@ -63,9 +63,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'settings.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -75,9 +72,6 @@ DATABASES = {
     }
 }
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'ru-RU'
 
@@ -90,9 +84,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -103,24 +94,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# django-smtp-ssl
-# https://github.com/bancek/django-smtp-ssl
-
-# EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = ''
-# EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-
-
 # CKEDITOR
 # https://github.com/django-ckeditor/django-ckeditor
 
 # CKEDITOR_UPLOAD_PATH = 'uploads/'
 # CKEDITOR_IMAGE_BACKEND = 'pillow'
-# CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
 # CKEDITOR_CONFIGS = {
 #     'default': {
 #         'toolbar': [["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],

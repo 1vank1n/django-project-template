@@ -1,99 +1,33 @@
-import path from 'path';
 import gulp from 'gulp';
-import named from 'vinyl-named';
-import webpack from 'webpack';
-import webpackStream from 'webpack-stream';
+import gulpif from 'gulp-if';
+import sourcemaps from 'gulp-sourcemaps';
+import babel from 'gulp-babel';
+import concat from 'gulp-concat';
 import plumber from 'gulp-plumber';
-import statsLogger from 'webpack-stats-logger';
 import notify from 'gulp-notify';
 
-import {destScripts, isDevelopment} from './consts.js';
-
-function runWebpack(watch = false) {
-	const webpackConfig = {
-		watch,
-		bail: false,
-		profile: true,
-		output: {
-			filename: '[name].js',
-			pathinfo: false
-		},
-		devtool: (isDevelopment) ? '#source-map' : 'eval',
-		debug: true,
-		resolve: {
-			modulesDirectories: [
-				'node_modules'
-			],
-			extensions: ['.js', '']
-		},
-		module: {
-			preLoaders: [
-				{
-					test: /\.js$/,
-					loader: 'source-map-loader'
-				}
-			],
-			loaders: [
-				{
-					test: /\.js$/,
-					loader: 'babel',
-					exclude: /node_modules/
-				},
-				{
-					test: /\.json$/,
-					loader: 'json'
-				},
-				{
-					test: /\.js$/,
-					loader: 'eslint-loader',
-					exclude: /node_modules/
-				}
-			]
-		},
-		plugins: isDevelopment ? [] : [
-			new webpack.optimize.DedupePlugin(),
-			new webpack.optimize.UglifyJsPlugin({
-				compress: {
-					warnings: false
-				},
-				output: {
-					comments: false
-				}
-			})
-		],
-		eslint: {
-			configFile: path.join(__dirname, '../.eslintrc'),
-			emitError: true,
-			emitWarning: true
-		},
-		externals: {
-			jquery: '$'
-		}
-	};
-
-	return gulp
-		.src('frontend/scripts/*')
-		.pipe(named())
-		.pipe(notify({
-			message: 'Generated file: <%= file.relative %> @ <%= options.date %>',
-			templateOptions: {
-				date: new Date()
-			}
-		}))
-		.pipe(plumber({errorHandler: notify.onError(
-			err => ({
-				title: 'Scripts',
-				message: err.message
-			})
-		)}))
-		.pipe(webpackStream(webpackConfig, null, statsLogger))
-		.pipe(gulp.dest(destScripts));
-}
+import { browserSync } from './default';
+import { srcScripts, distScripts, isDevelopment } from './consts';
 
 gulp.task('scripts', () => {
-	return runWebpack(false);
-});
+	gulp.src(`${srcScripts}/vendor/**`)
+		.pipe(gulp.dest(`${distScripts}/vendor/`));
 
-gulp.task('scripts:watch', () => {
-	return runWebpack(true);
+	gulp.src(`${srcScripts}/*.js`)
+		.pipe(plumber({
+			errorHandler: notify.onError(
+				err => ({
+					title: 'Html',
+					message: err.message,
+				}),
+			),
+		}))
+		.pipe(gulpif(!isDevelopment, sourcemaps.init()))
+		.pipe(babel({
+			presets: ['es2015'],
+		}))
+		.pipe(concat('base.js'))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest(distScripts))
+		.pipe(browserSync.stream());
 });

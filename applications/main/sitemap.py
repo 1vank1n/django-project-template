@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # from django.contrib.sitemaps import Sitemap
 # from itertools import chain
 # from django.core.urlresolvers import reverse
