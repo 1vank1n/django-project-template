@@ -2,7 +2,7 @@
 
 It's very simple start point for django project.
 
-For `Django == 1.11.4` compatible with Python >= 3.4
+For `Django >= 2.0` compatible with `Python >= 3.4`
 
 ## Install
 

@@ -1,27 +1,37 @@
-from django.conf.urls import include, url
-from django.conf.urls.static import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import include, path
+
 # from django.contrib.sitemaps.views import sitemap
 
-# from applications.main.sitemap import (SitemapWeekly, SitemapDaily)
+# from applications.core.sitemap import (SitemapWeekly, SitemapDaily)
 # sitemaps = {'weekly': SitemapWeekly, 'daily': SitemapDaily}
 
 
 urlpatterns = [
-    # url(r'^sitemap\.xml$',
+    # path(
+    #     'sitemap.xml/',
     #     sitemap,
-    #     {'sitemaps': sitemaps}),
+    #     {'sitemaps': sitemaps},
+    #     name='django.contrib.sitemaps.views.sitemap'
+    # ),
 
-    url(r'^admin/',
-        include(admin.site.urls)),
+    path(
+        'admin/',
+        admin.site.urls,
+    ),
 
-    # url(r'^ckeditor/',
-    #     include('ckeditor_uploader.urls')),
+    # path(
+    #     'ckeditor/',
+    #     include('ckeditor_uploader.urls'),
+    # ),
 
-    url(r'^',
-        include('applications.main.urls', namespace='main')),
+    path(
+        '',
+        include(('applications.core.urls', 'core'), namespace='core'),
+    ),
 ]
 
 urlpatterns += staticfiles_urlpatterns() + \

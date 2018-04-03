@@ -1,21 +1,15 @@
 import os
 import uuid
-from django.db import models
-# from django.core.urlresolvers import reverse
-from django.utils.deconstruct import deconstructible
-# from django.utils.safestring import mark_safe
-# from django.utils.timezone import now
 
-# from ckeditor_uploader.fields import RichTextUploadingField
+from django.db import models
+from django.utils.deconstruct import deconstructible
 from model_utils.managers import QueryManager
 
 
-"""
-    Общее
-"""
-
-
 class Common(models.Model):
+    """
+    Абстрактный класс. Содержит `статус` и `время создания / модификации` объекта.
+    """
 
     DRAFT = 'draft'
     PUBLISHED = 'published'
@@ -29,39 +23,47 @@ class Common(models.Model):
         'Статус',
         choices=CHOICES_STATUS,
         default=PUBLISHED,
-        max_length=50)
+        max_length=50,
+    )
 
     created = models.DateTimeField(
         'Дата создания',
-        auto_now_add=True)
+        auto_now_add=True,
+    )
 
     modified = models.DateTimeField(
         'Дата изменения',
-        auto_now=True)
+        auto_now=True,
+    )
 
     objects = models.Manager()
     published = QueryManager(status=PUBLISHED)
 
     class Meta:
         abstract = True
-        ordering = ('-created', )
+        ordering = ('-created',)
 
 
 class MetaFields(models.Model):
+    """
+    Абстрактный класс. Содержит мета описание и ключевые слова.
+    """
 
     meta_description = models.CharField(
         'META описание',
         max_length=200,
         help_text='Рекомендуемая длина мета описания = 160 символов.',
         blank=True,
-        null=True)
+        null=True,
+    )
 
     meta_keywords = models.CharField(
         'META ключевые слова',
         max_length=2500,
         help_text='Укажите ключевые слова через запятую.',
         blank=True,
-        null=True)
+        null=True,
+    )
 
     class Meta:
         abstract = True

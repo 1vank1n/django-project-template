@@ -3,17 +3,17 @@ from . import models
 
 
 class CommonAdmin(admin.ModelAdmin):
-    list_filter = ('status', 'created', )
-    readonly_fields = ('created', 'modified', )
-    actions = ['make_published', 'make_drafted', ]
+    list_filter = ['status', 'created']
+    readonly_fields = ['created', 'modified']
+    actions = ['make_published', 'make_drafted']
 
     def make_published(modeladmin, request, queryset):
         queryset.update(status=models.Common.PUBLISHED)
-    make_published.short_description = u'Выставить статус "Опубликовано"'
+    make_published.short_description = 'Выставить статус "Опубликовано"'
 
     def make_drafted(modeladmin, request, queryset):
         queryset.update(status=models.Common.DRAFT)
-    make_drafted.short_description = u'Выставить статус "Черновик"'
+    make_drafted.short_description = 'Выставить статус "Черновик"'
 
 
 class MetaFieldsAdmin(admin.ModelAdmin):
@@ -24,5 +24,5 @@ class MetaFieldsAdmin(admin.ModelAdmin):
         for f in fields:
             newfieldsets[0][1]['fields'].remove(f)
         newfieldsets.append(
-            [u'Мета-информация', {'classes': ('collapse',), 'fields': fields}])
+            ['Мета-информация', {'classes': ('collapse',), 'fields': fields}])
         return newfieldsets
