@@ -1,14 +1,14 @@
 {
-  "name": "django-project-template-master",
+  "name": "NameProject",
   "version": "1.0.0",
-  "description": "It's very simple start point for django project.",
-  "main": ".eslintrc.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development gulp"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ivan Lukyanets <ivan@il-studio.ru>",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
