@@ -1,1 +1,0 @@
-{"version":3,"sources":["base.js"],"names":["$"],"mappings":";;AAAAA,EAAE,YAAM,CAEP,CAFD","file":"base.js","sourcesContent":["$(() => {\n\n});\n"]}

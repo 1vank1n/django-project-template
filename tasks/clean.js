@@ -1,10 +1,6 @@
-import gulp from 'gulp';
 import del from 'del';
 import { dist } from './consts';
 
+const clean = () => del([`${dist}/**/*`]);
 
-gulp.task('clean', () =>
-	del([
-		`${dist}/**/*`,
-	]),
-);
+export default clean;

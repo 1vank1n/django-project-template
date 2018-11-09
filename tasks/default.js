@@ -1,27 +1,10 @@
-import gulp from 'gulp';
-import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 
-browserSync.create();
-module.exports.browserSync = browserSync;
+export const bs = browserSync.create();
 
-
-gulp.task('browserSync', () => {
-	browserSync.init({
-		proxy: 'localhost:8000',
-	});
+const bsTask = () => bs.init({
+	proxy: 'localhost:8000',
+	browser: 'google chrome canary',
 });
 
-
-gulp.task('default', () => (
-	runSequence(
-		'clean',
-		'fonts',
-		'styles',
-		'scripts',
-		'images',
-		'svg',
-		'browserSync',
-		'watch',
-	)
-));
+export default bsTask;
