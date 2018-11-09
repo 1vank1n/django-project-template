@@ -1,7 +1,7 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 import { srcImages, distImages } from './consts';
 
-gulp.task('images', () =>
-	gulp.src([`${srcImages}/*/**`, `!${srcImages}/*/icon*.svg`])
-		.pipe(gulp.dest(distImages)),
-);
+const images = () => src([`${srcImages}/**`, `!${srcImages}/*/icon*.svg`])
+	.pipe(dest(distImages));
+
+export default images;
