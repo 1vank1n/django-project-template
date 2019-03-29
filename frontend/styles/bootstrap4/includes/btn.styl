@@ -1,0 +1,51 @@
+.btn
+    display inline-block
+    font-weight $font-weight-normal
+    text-align center
+    white-space nowrap
+    vertical-align middle
+    -webkit-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+    border 1px solid transparent
+    padding 0.5rem 0.75rem
+    font-size 1rem
+    line-height 1.25
+    border-radius $border-radius
+    transition all 0.15s ease-in-out
+
+.btn:focus, .btn:hover
+    text-decoration none
+
+.btn:focus, .btn.focus
+    outline 0
+    box-shadow 0 0 0 3px rgba(0, 123, 255, 0.25)
+
+.btn.disabled, .btn:disabled
+    opacity .65
+
+.btn:active, .btn.active
+    background-image none
+
+a.btn.disabled,
+fieldset[disabled] a.btn
+    pointer-events none
+
+.btn-lg, .btn-group-lg > .btn
+    padding 0.5rem 1rem
+    font-size 1.25rem
+    line-height $line-height-sm 
+    border-radius 0.3rem
+
+.btn-sm, .btn-group-sm > .btn
+    padding 0.25rem 0.5rem
+    font-size $font-size-sm
+    line-height $line-height-sm 
+    border-radius 0.2rem
+
+.btn-block
+    display block
+    width 100%
+    & + .btn-block
+        margin-top 0.5rem

@@ -10,6 +10,11 @@ import scripts from './scripts';
 import styles from './styles';
 import { bs } from './default';
 
+const html = (cb) => {
+	bs.reload();
+	cb();
+};
+
 const watcher = () => {
 	global.watch = true;
 
@@ -19,7 +24,8 @@ const watcher = () => {
 	watch(`${srcStyles}/**/*`, styles);
 	watch(`${srcScripts}/**/*`, scriptsVendor);
 	watch(`${srcScripts}/**/*`, scripts);
-	watch(`${srcTemplates}/**/*`, bs.reload());
+	watch(`${srcTemplates}/**/*`, html);
+	watch('applications/**/templates/**/*', html);
 };
 
 export default watcher;

@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from . import models
 
 
@@ -9,11 +10,11 @@ class CommonAdmin(admin.ModelAdmin):
 
     def make_published(modeladmin, request, queryset):
         queryset.update(status=models.Common.PUBLISHED)
-    make_published.short_description = 'Выставить статус "Опубликовано"'
+    make_published.short_description = 'Выставить статус "Опубликовано"' # yapf: disable
 
     def make_drafted(modeladmin, request, queryset):
         queryset.update(status=models.Common.DRAFT)
-    make_drafted.short_description = 'Выставить статус "Черновик"'
+    make_drafted.short_description = 'Выставить статус "Черновик"' # yapf: disable
 
 
 class MetaFieldsAdmin(admin.ModelAdmin):

@@ -1,8 +1,22 @@
 # from django.contrib.sitemaps import Sitemap
 # from itertools import chain
-# from django.core.urlresolvers import reverse
+# from django.urls import reverse
 
 # from applications.main.models import News
+
+
+# class SitemapDaily(Sitemap):
+#     changefreq = 'weekly'
+#     priority = 1
+
+#     def items(self):
+#         return [
+#             'main:index',
+#             ...
+#         ]
+
+#     def location(self, item):
+#         return reverse(item)
 
 
 # class SitemapWeekly(Sitemap):
@@ -19,17 +33,3 @@
 
 #     def lastmod(self, obj):
 #         return obj.created
-
-
-# class SitemapDaily(Sitemap):
-#     changefreq = 'weekly'
-#     priority = 1
-
-#     def items(self):
-#         return [
-#             'main:index',
-#             ...
-#         ]
-
-#     def location(self, item):
-#         return reverse(item)

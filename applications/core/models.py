@@ -3,7 +3,7 @@ import uuid
 
 from django.db import models
 from django.utils.deconstruct import deconstructible
-from model_utils.managers import QueryManager
+from model_utils import Choices
 
 
 class Common(models.Model):
@@ -11,37 +11,31 @@ class Common(models.Model):
     Абстрактный класс. Содержит `статус` и `время создания / модификации` объекта.
     """
 
-    DRAFT = 'draft'
-    PUBLISHED = 'published'
+    STATUS = Choices(
+        (0, 'draft', 'Черновик'),
+        (1, 'published', 'Опубликовано'),
+    ) # yapf: disable
 
-    CHOICES_STATUS = (
-        (DRAFT, 'Черновик'),
-        (PUBLISHED, 'Опубликовано'),
-    )
-
-    status = models.CharField(
-        'Статус',
-        choices=CHOICES_STATUS,
-        default=PUBLISHED,
+    status = models.PositiveSmallIntegerField(
+        verbose_name='Статус',
+        choices=STATUS,
+        default=STATUS.published,
         max_length=50,
     )
 
     created = models.DateTimeField(
-        'Дата создания',
+        verbose_name='Дата создания',
         auto_now_add=True,
     )
 
     modified = models.DateTimeField(
-        'Дата изменения',
+        verbose_name='Дата изменения',
         auto_now=True,
     )
 
-    objects = models.Manager()
-    published = QueryManager(status=PUBLISHED)
-
     class Meta:
         abstract = True
-        ordering = ('-created',)
+        ordering = ['-created']
 
 
 class MetaFields(models.Model):
@@ -50,7 +44,7 @@ class MetaFields(models.Model):
     """
 
     meta_description = models.CharField(
-        'META описание',
+        verbose_name='META описание',
         max_length=200,
         help_text='Рекомендуемая длина мета описания = 160 символов.',
         blank=True,
@@ -58,7 +52,7 @@ class MetaFields(models.Model):
     )
 
     meta_keywords = models.CharField(
-        'META ключевые слова',
+        verbose_name='META ключевые слова',
         max_length=2500,
         help_text='Укажите ключевые слова через запятую.',
         blank=True,
@@ -71,11 +65,10 @@ class MetaFields(models.Model):
 
 @deconstructible
 class PathAndRename(object):
-
     def __init__(self, sub_path):
         self.path = sub_path
 
     def __call__(self, instance, filename):
-        basename, extension = os.path.splitext(filename)
+        _, extension = os.path.splitext(filename)
         filename = '{}{}'.format(uuid.uuid4().hex, extension)
         return os.path.join(self.path, filename)
