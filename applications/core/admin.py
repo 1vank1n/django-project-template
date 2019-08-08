@@ -17,6 +17,10 @@ class CommonAdmin(admin.ModelAdmin):
     make_drafted.short_description = 'Выставить статус "Черновик"' # yapf: disable
 
 
+class CommonInlineAdmin():
+    readonly_fields = ['created', 'modified']
+
+
 class MetaFieldsAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)

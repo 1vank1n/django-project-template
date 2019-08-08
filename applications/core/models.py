@@ -4,6 +4,7 @@ import uuid
 from django.db import models
 from django.utils.deconstruct import deconstructible
 from model_utils import Choices
+from model_utils.managers import QueryManager
 
 
 class Common(models.Model):
@@ -32,6 +33,8 @@ class Common(models.Model):
         verbose_name='Дата изменения',
         auto_now=True,
     )
+
+    published = QueryManager(status=STATUS.published)
 
     class Meta:
         abstract = True
