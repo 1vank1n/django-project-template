@@ -74,7 +74,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'Asia/Yekaterinburg'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
