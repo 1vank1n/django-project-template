@@ -13,9 +13,9 @@ class Common(models.Model):
     """
 
     STATUS = Choices(
-        (0, 'draft', 'Черновик'),
-        (1, 'published', 'Опубликовано'),
-    ) # yapf: disable
+        ('draft', 'Черновик'),
+        ('published', 'Опубликовано'),
+    )
 
     status = models.PositiveSmallIntegerField(
         verbose_name='Статус',

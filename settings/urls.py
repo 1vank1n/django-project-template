@@ -30,7 +30,7 @@ urlpatterns = [
 
     path(
         '',
-        include(('applications.core.urls', 'core'), namespace='core'),
+        include(('applications.main.urls', 'main'), namespace='main'),
     ),
 ]
 

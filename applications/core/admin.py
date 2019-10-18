@@ -28,6 +28,5 @@ class MetaFieldsAdmin(admin.ModelAdmin):
         fields = ['meta_keywords', 'meta_description']
         for f in fields:
             newfieldsets[0][1]['fields'].remove(f)
-        newfieldsets.append(
-            ['Мета-информация', {'classes': ('collapse',), 'fields': fields}])
+        newfieldsets.append(['Мета-информация', {'classes': ('collapse', ), 'fields': fields}])
         return newfieldsets

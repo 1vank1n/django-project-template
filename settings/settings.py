@@ -64,10 +64,10 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DBNAME'),
-        'USER': os.getenv('MYSQL_USER'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
     }
 }
 
@@ -102,33 +102,6 @@ if os.getenv('EMAIL_HOST'):
     EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
     DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
     EMAIL_PORT = os.getenv('EMAIL_PORT')
-
-
-# CKEDITOR
-# https://github.com/django-ckeditor/django-ckeditor
-
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_IMAGE_BACKEND = 'pillow'
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': [
-            ['Format', 'Bold', 'Italic', 'Underline', 'Strike',  'SpellChecker'],
-            ['Blockquote', 'RemoveFormat'],
-            ['NumberedList', 'BulletedList', 'Indent', 'Outdent', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Image', 'Table', 'Link', 'Unlink', 'Anchor', 'SectionLink', 'Subscript', 'Superscript'],
-            ['Undo', 'Redo'],
-            ['Embed', 'Iframe'],
-            ['Source'],
-            ['Maximize']
-        ],
-        'width': 980,
-        'extraPlugins': ','.join(
-        [
-            'embed',
-            'iframe',
-        ]),
-    },
-}
 
 
 try:

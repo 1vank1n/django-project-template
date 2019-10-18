@@ -4,6 +4,7 @@
 
 __pycache__/
 .env/
+.vscode/
 logs/
 media/
 node_modules/
