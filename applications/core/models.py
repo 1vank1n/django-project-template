@@ -17,7 +17,7 @@ class Common(models.Model):
         ('published', 'Опубликовано'),
     )
 
-    status = models.PositiveSmallIntegerField(
+    status = models.CharField(
         verbose_name='Статус',
         choices=STATUS,
         default=STATUS.published,
@@ -34,6 +34,7 @@ class Common(models.Model):
         auto_now=True,
     )
 
+    objects = models.Manager()
     published = QueryManager(status=STATUS.published)
 
     class Meta:
