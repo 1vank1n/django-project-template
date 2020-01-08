@@ -12,8 +12,8 @@ import { srcScripts, distScripts, isDevelopment } from './consts';
 const scripts = () => src(`${srcScripts}/*.js`)
 	.pipe(plumber({
 		errorHandler: notify.onError(
-			err => ({
-				title: 'Html',
+			(err) => ({
+				title: 'Script',
 				message: err.message,
 			}),
 		),

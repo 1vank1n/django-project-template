@@ -13,4 +13,3 @@ node_modules/
 db.sqlite3
 package-lock.json
 settings/local_settings.py
-settings/whoosh*

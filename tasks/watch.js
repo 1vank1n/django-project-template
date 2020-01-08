@@ -5,9 +5,10 @@ import {
 import fonts from './fonts';
 import images from './images';
 import svg from './svg';
+import stylesStyl from './stylesStyl';
+import stylesSass from './stylesSass';
 import scriptsVendor from './scriptsVendor';
 import scripts from './scripts';
-import styles from './styles';
 import { bs } from './default';
 
 const html = (cb) => {
@@ -21,7 +22,8 @@ const watcher = () => {
 	watch(`${srcFonts}/**`, fonts);
 	watch(`${srcImages}/**`, images);
 	watch(`${srcImages}/**/icon*.svg`, svg);
-	watch(`${srcStyles}/**/*`, styles);
+	watch(`${srcStyles}/**/*`, stylesStyl);
+	watch(`${srcStyles}/**/*`, stylesSass);
 	watch(`${srcScripts}/**/*`, scriptsVendor);
 	watch(`${srcScripts}/**/*`, scripts);
 	watch(`${srcTemplates}/**/*`, html);

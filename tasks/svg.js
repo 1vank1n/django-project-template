@@ -37,7 +37,7 @@ const svg = () => src(['**/icon*.svg'], {
 })
 	.pipe(plumber({
 		errorHandler: notify.onError(
-			err => ({
+			(err) => ({
 				title: 'Svg',
 				message: err.message,
 			}),

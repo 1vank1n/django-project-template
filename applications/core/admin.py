@@ -8,16 +8,16 @@ class CommonAdmin(admin.ModelAdmin):
     readonly_fields = ['created', 'modified']
     actions = ['make_published', 'make_drafted']
 
-    def make_published(modeladmin, request, queryset):
-        queryset.update(status=models.Common.PUBLISHED)
+    def make_published(self, request, queryset):
+        queryset.update(status=models.Common.STATUS.published)
     make_published.short_description = 'Выставить статус "Опубликовано"' # yapf: disable
 
-    def make_drafted(modeladmin, request, queryset):
-        queryset.update(status=models.Common.DRAFT)
+    def make_drafted(self, request, queryset):
+        queryset.update(status=models.Common.STATUS.draft)
     make_drafted.short_description = 'Выставить статус "Черновик"' # yapf: disable
 
 
-class CommonInlineAdmin():
+class CommonInlineAdmin:
     readonly_fields = ['created', 'modified']
 
 
