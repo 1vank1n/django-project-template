@@ -18,7 +18,7 @@ const scripts = () => src(`${srcScripts}/*.js`)
 			}),
 		),
 	}))
-	.pipe(gulpif(!isDevelopment, sourcemaps.init()))
+	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(babel())
 	.pipe(concat('base.js'))
 	.pipe(sourcemaps.write('.'))
