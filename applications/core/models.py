@@ -1,6 +1,7 @@
 import os
 import uuid
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.deconstruct import deconstructible
 from model_utils import Choices
@@ -65,6 +66,16 @@ class MetaFields(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Single(models.Model):
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        if not self.pk and self.__class__.objects.exists():
+            raise ValidationError('Может быть только один объект этого класса')
+        return super().save(*args, **kwargs)
 
 
 @deconstructible

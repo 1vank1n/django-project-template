@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import mark_safe
 
 from . import models
 
@@ -30,3 +31,22 @@ class MetaFieldsAdmin(admin.ModelAdmin):
             newfieldsets[0][1]['fields'].remove(f)
         newfieldsets.append(['Мета-информация', {'classes': ('collapse', ), 'fields': fields}])
         return newfieldsets
+
+
+class ThumbAdminMixin():
+    image_list = []
+
+    def __init__(self, *args, **kwargs):
+        if self.image_list:
+            for image in self.image_list:
+                name = 'thumb_{}'.format(image)
+
+                def fn(obj):
+                    photo = getattr(obj, image)  # pylint: disable=cell-var-from-loop
+                    if not photo:
+                        return '—'
+                    return mark_safe(f'<img src="{photo.url}" width="100">')
+                fn.short_description = 'Превью' # yapf: disable
+
+                setattr(self, name, fn)
+        super().__init__(*args, **kwargs)
