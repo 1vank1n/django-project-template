@@ -48,6 +48,13 @@ class MetaFields(models.Model):
     Абстрактный класс. Содержит мета описание и ключевые слова.
     """
 
+    meta_title = models.CharField(
+        verbose_name='МЕТА заголовок',
+        max_length=100,
+        help_text='Если заполнено, то используется вместо заголовка в title',
+        blank=True,
+    )
+
     meta_description = models.CharField(
         verbose_name='META описание',
         max_length=200,
