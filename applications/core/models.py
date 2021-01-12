@@ -49,7 +49,7 @@ class SeoFields(models.Model):
     """
 
     seo_title = models.CharField(
-        verbose_name='МЕТА заголовок',
+        verbose_name='SEO заголовок',
         max_length=100,
         help_text='Если заполнено, то используется вместо заголовка в title',
         blank=True,
