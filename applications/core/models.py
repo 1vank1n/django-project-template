@@ -43,28 +43,28 @@ class Common(models.Model):
         ordering = ['-created']
 
 
-class MetaFields(models.Model):
+class SeoFields(models.Model):
     """
     Абстрактный класс. Содержит мета описание и ключевые слова.
     """
 
-    meta_title = models.CharField(
+    seo_title = models.CharField(
         verbose_name='МЕТА заголовок',
         max_length=100,
         help_text='Если заполнено, то используется вместо заголовка в title',
         blank=True,
     )
 
-    meta_description = models.CharField(
-        verbose_name='META описание',
+    seo_description = models.CharField(
+        verbose_name='SEO описание',
         max_length=200,
         help_text='Рекомендуемая длина мета описания = 160 символов.',
         blank=True,
         null=True,
     )
 
-    meta_keywords = models.CharField(
-        verbose_name='META ключевые слова',
+    seo_keywords = models.CharField(
+        verbose_name='SEO ключевые слова',
         max_length=2500,
         help_text='Укажите ключевые слова через запятую.',
         blank=True,

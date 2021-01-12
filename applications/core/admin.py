@@ -22,14 +22,14 @@ class CommonInlineAdmin:
     readonly_fields = ['created', 'modified']
 
 
-class MetaFieldsAdmin(admin.ModelAdmin):
+class SeoFieldsAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
         newfieldsets = list(fieldsets)
-        fields = ['meta_title', 'meta_keywords', 'meta_description']
+        fields = ['seo_title', 'seo_keywords', 'seo_description']
         for f in fields:
             newfieldsets[0][1]['fields'].remove(f)
-        newfieldsets.append(['Мета-информация', {'classes': ('collapse', ), 'fields': fields}])
+        newfieldsets.append(['SEO', {'classes': ('collapse', ), 'fields': fields}])
         return newfieldsets
 
 
