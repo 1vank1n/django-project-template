@@ -43,7 +43,7 @@ class Common(models.Model):
         ordering = ['-created']
 
 
-class SeoFields(models.Model):
+class Seo(models.Model):
     """
     Абстрактный класс. Содержит мета описание и ключевые слова.
     """

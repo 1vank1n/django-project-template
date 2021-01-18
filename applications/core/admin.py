@@ -22,7 +22,7 @@ class CommonInlineAdmin:
     readonly_fields = ['created', 'modified']
 
 
-class SeoFieldsAdmin(admin.ModelAdmin):
+class SeoAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
         newfieldsets = list(fieldsets)
