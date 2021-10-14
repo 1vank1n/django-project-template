@@ -8,4 +8,9 @@ urlpatterns = [
         views.IndexView.as_view(),
         name='index',
     ),
+    path(
+        'page/<str:slug>/',
+        views.PageDetailView.as_view(),
+        name='page_detail',
+    ),
 ]

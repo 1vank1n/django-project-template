@@ -9,7 +9,6 @@ from django.urls import include, path
 # from applications.core.sitemap import (SitemapWeekly, SitemapDaily)
 # sitemaps = {'weekly': SitemapWeekly, 'daily': SitemapDaily}
 
-
 urlpatterns = [
     # path(
     #     'sitemap.xml/',
@@ -17,7 +16,6 @@ urlpatterns = [
     #     {'sitemaps': sitemaps},
     #     name='django.contrib.sitemaps.views.sitemap'
     # ),
-
     path(
         'admin/',
         admin.site.urls,
@@ -27,11 +25,19 @@ urlpatterns = [
     #     'ckeditor/',
     #     include('ckeditor_uploader.urls'),
     # ),
-
     path(
         '',
         include(('applications.main.urls', 'main'), namespace='main'),
     ),
+
+    # path(
+    #     'about',
+    #     include(('applications.about.urls', 'about'), namespace='about'),
+    # ),
+    # path(
+    #     'capture',
+    #     include(('applications.capture.urls', 'capture'), namespace='capture'),
+    # ),
 ]
 
 urlpatterns += staticfiles_urlpatterns() + \

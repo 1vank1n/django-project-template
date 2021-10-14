@@ -1,2 +1,10 @@
 Django
+django_bootstrap5
+django-admin-sortable2
+django-ckeditor
+django-cleanup
 django-model-utils
+django-phonenumber-field
+phonenumbers
+Pillow
+singlemodeladmin
