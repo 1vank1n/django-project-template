@@ -29,7 +29,6 @@ THIRD_APPS = [
 ]
 
 CUSTOM_APPS = [
-    # 'applications.about',
     # 'applications.capture',
     'applications.core',
     'applications.main',

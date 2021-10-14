@@ -1,13 +1,10 @@
 from django.views import generic
 
 from . import models
-from .mixins import StaffQuerysetMixin
+from ..core.mixins import StaffQuerysetMixin
 
 
-class IndexView(
-        StaffQuerysetMixin,
-        generic.TemplateView,
-):
+class IndexView(generic.TemplateView):
     template_name = 'index.html'
 
 

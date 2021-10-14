@@ -31,10 +31,6 @@ urlpatterns = [
     ),
 
     # path(
-    #     'about',
-    #     include(('applications.about.urls', 'about'), namespace='about'),
-    # ),
-    # path(
     #     'capture',
     #     include(('applications.capture.urls', 'capture'), namespace='capture'),
     # ),

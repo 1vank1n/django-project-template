@@ -3,7 +3,7 @@ from django.views import generic
 from . import forms, mixins, models
 
 
-class AjaxBidCreateView(
+class BidAjaxCreateView(
         mixins.AjaxFormMixin,
         generic.CreateView,
 ):
