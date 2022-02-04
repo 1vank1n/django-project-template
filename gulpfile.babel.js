@@ -1,16 +1,18 @@
-import { series, parallel } from 'gulp';
+import { parallel, series } from 'gulp';
+import ckeditor from './tasks/ckeditor';
 import clean from './tasks/clean';
+import { isBuild } from './tasks/consts';
+import bsTask from './tasks/default';
 import fonts from './tasks/fonts';
+import images from './tasks/images';
+import scripts from './tasks/scripts';
+import scriptsVendor from './tasks/scriptsVendor';
 import stylesSass from './tasks/stylesSass';
 import stylesStyl from './tasks/stylesStyl';
-import bsTask from './tasks/default';
-import scriptsVendor from './tasks/scriptsVendor';
-import scripts from './tasks/scripts';
-import images from './tasks/images';
 import svg from './tasks/svg';
 import watcher from './tasks/watch';
 
-exports.default = series(
+const buildSeries = [
 	clean,
 	parallel(
 		fonts,
@@ -20,9 +22,17 @@ exports.default = series(
 		scripts,
 		images,
 		svg,
+		ckeditor,
 	),
+];
+
+const watchSeries = [
 	parallel(
 		bsTask,
 		watcher,
 	),
-);
+];
+
+exports.default = isBuild
+	? series(...buildSeries)
+	: series(...buildSeries, ...watchSeries);

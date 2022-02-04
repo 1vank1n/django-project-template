@@ -8,6 +8,7 @@ __pycache__/
 logs/
 media/
 node_modules/
+static/
 
 .DS_Store
 db.sqlite3

@@ -1,3 +1,9 @@
 from django.contrib import admin
+from singlemodeladmin import SingleModelAdmin
 
-# Register your models here.
+from . import models
+
+
+@admin.register(models.Preference)
+class PreferenceAdmin(SingleModelAdmin):
+    pass

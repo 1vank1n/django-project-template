@@ -1,39 +1,24 @@
-import { src, dest } from 'gulp';
-import plumber from 'gulp-plumber';
-import gulpif from 'gulp-if';
-import gcmq from 'gulp-group-css-media-queries';
+import { dest, src } from 'gulp';
+import autoprefixer from 'gulp-autoprefixer';
 import nano from 'gulp-cssnano';
+import gcmq from 'gulp-group-css-media-queries';
+import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
-import notify from 'gulp-notify';
+import { distStyles, isDevelopment, srcStyles } from './consts';
 import { bs } from './default';
-import { srcStyles, distStyles, isDevelopment } from './consts';
 
-sass.compiler = require('node-sass');
+const sass = require('gulp-sass')(require('sass'));
 
 const stylesSass = () => src(['base.scss'], {
 	cwd: srcStyles,
 })
-	.pipe(notify({
-		message: 'Generated file: <%= file.relative %> @ <%= options.date %>',
-		templateOptions: {
-			date: new Date(),
-		},
-	}))
-	.pipe(plumber({
-		errorHandler: notify.onError(
-			(err) => ({
-				title: 'Sass',
-				message: err.message,
-			}),
-		),
-	}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(sass())
+	.pipe(autoprefixer())
 	.pipe(gulpif(!isDevelopment, gcmq()))
 	.pipe(gulpif(!isDevelopment, nano()))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
-	.pipe(dest(`${distStyles}/bootstrap4/`))
+	.pipe(dest(`${distStyles}/bootstrap/`))
 	.pipe(bs.stream());
 
 export default stylesSass;

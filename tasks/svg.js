@@ -1,10 +1,8 @@
-import { src, dest } from 'gulp';
-import svgSprite from 'gulp-svg-sprite';
+import { dest, src } from 'gulp';
 import gulpif from 'gulp-if';
-import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
+import svgSprite from 'gulp-svg-sprite';
+import { distImages, srcImages, srcStyles } from './consts';
 
-import { srcStyles, srcImages, distImages } from './consts';
 
 const svgSpriteConfig = {
 	shape: {
@@ -12,7 +10,7 @@ const svgSpriteConfig = {
 			separator: '__',
 		},
 		spacing: {
-			padding: 50,
+			padding: 0,
 		},
 	},
 	mode: {
@@ -35,14 +33,6 @@ const svgSpriteConfig = {
 const svg = () => src(['**/icon*.svg'], {
 	cwd: srcImages,
 })
-	.pipe(plumber({
-		errorHandler: notify.onError(
-			(err) => ({
-				title: 'Svg',
-				message: err.message,
-			}),
-		),
-	}))
 	.pipe(svgSprite(svgSpriteConfig))
 	.pipe(gulpif(/\.styl$/, dest(srcStyles)))
 	.pipe(gulpif(/\.svg$/, dest(distImages)));

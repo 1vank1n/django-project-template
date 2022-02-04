@@ -1,2 +1,7 @@
 Django
+django-cleanup
 django-model-utils
+Pillow
+pylint
+singlemodeladmin
+yapf

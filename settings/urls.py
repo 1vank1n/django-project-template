@@ -9,6 +9,9 @@ from django.urls import include, path
 # from applications.core.sitemap import (SitemapWeekly, SitemapDaily)
 # sitemaps = {'weekly': SitemapWeekly, 'daily': SitemapDaily}
 
+# admin.site.site_header = 'Салехард.Онлайн'
+# admin.site.site_title = 'Салехард.Онлайн'
+# admin.site.index_title = ''
 
 urlpatterns = [
     # path(
@@ -17,17 +20,14 @@ urlpatterns = [
     #     {'sitemaps': sitemaps},
     #     name='django.contrib.sitemaps.views.sitemap'
     # ),
-
     path(
         'admin/',
         admin.site.urls,
     ),
-
     # path(
     #     'ckeditor/',
     #     include('ckeditor_uploader.urls'),
     # ),
-
     path(
         '',
         include(('applications.main.urls', 'main'), namespace='main'),

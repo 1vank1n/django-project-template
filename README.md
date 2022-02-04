@@ -2,7 +2,7 @@
 
 It's very simple start point for django project.
 
-For `Django >= 2.0` compatible with `Python >= 3.5`
+For `Django >= 3.0` compatible with `Python >= 3.6`. `Node ~= 16.13`.
 
 ## Install
 

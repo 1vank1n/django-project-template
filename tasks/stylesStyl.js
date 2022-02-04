@@ -1,32 +1,16 @@
-import { src, dest } from 'gulp';
-import plumber from 'gulp-plumber';
-import gulpif from 'gulp-if';
-import stylus from 'gulp-stylus';
 import autoprefixer from 'autoprefixer-stylus';
-import gcmq from 'gulp-group-css-media-queries';
+import { dest, src } from 'gulp';
 import nano from 'gulp-cssnano';
+import gcmq from 'gulp-group-css-media-queries';
+import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
-import notify from 'gulp-notify';
+import stylus from 'gulp-stylus';
+import { distStyles, isDevelopment, srcStyles } from './consts';
 import { bs } from './default';
-import { srcStyles, distStyles, isDevelopment } from './consts';
 
 const stylesStyl = () => src(['base.styl'], {
 	cwd: srcStyles,
 })
-	.pipe(notify({
-		message: 'Generated file: <%= file.relative %> @ <%= options.date %>',
-		templateOptions: {
-			date: new Date(),
-		},
-	}))
-	.pipe(plumber({
-		errorHandler: notify.onError(
-			(err) => ({
-				title: 'Stylus',
-				message: err.message,
-			}),
-		),
-	}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(stylus({
 		use: [

@@ -23,6 +23,7 @@ class CommonInlineAdmin:
 
 
 class SeoAdmin(admin.ModelAdmin):
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
         newfieldsets = list(fieldsets)
@@ -39,7 +40,7 @@ class ThumbAdminMixin():
     def __init__(self, *args, **kwargs):
         if self.image_list:
             for image in self.image_list:
-                name = 'thumb_{}'.format(image)
+                name = f'thumb_{image}'
 
                 def fn(obj):
                     photo = getattr(obj, image)  # pylint: disable=cell-var-from-loop

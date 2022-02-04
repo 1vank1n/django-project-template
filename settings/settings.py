@@ -1,4 +1,5 @@
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "{{ secret_key }}"
 
@@ -25,9 +26,10 @@ THIRD_APPS = [
 
 CUSTOM_APPS = [
     'applications.core',
+    'applications.main',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CUSTOM_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CUSTOM_APPS + ['django_cleanup']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -36,7 +38,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'settings.urls'
@@ -44,9 +46,7 @@ ROOT_URLCONF = 'settings.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates/')
-        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -54,13 +54,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'applications.main.processors.preference',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'settings.wsgi.application'
-
 
 DATABASES = {
     'default': {
@@ -71,29 +71,20 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LANGUAGE_CODE = 'ru'
-
 TIME_ZONE = 'Europe/Moscow'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 SITE_ID = 1
 
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_nginx')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 if os.getenv('EMAIL_HOST'):
     EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -103,8 +94,74 @@ if os.getenv('EMAIL_HOST'):
     DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
     EMAIL_PORT = os.getenv('EMAIL_PORT')
 
+# CKEDITOR
+# https://github.com/django-ckeditor/django-ckeditor
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            [
+                'Format',
+                'Bold',
+                'Italic',
+                'Underline',
+                'Strike',
+                'SpellChecker',
+            ],
+            [
+                'Blockquote',
+                'RemoveFormat',
+            ],
+            [
+                'NumberedList',
+                'BulletedList',
+                'Indent',
+                'Outdent',
+                'JustifyLeft',
+                'JustifyCenter',
+                'JustifyRight',
+                'JustifyBlock',
+            ],
+            [
+                'Image',
+                'Table',
+                'Link',
+                'Unlink',
+                'Anchor',
+                'SectionLink',
+                'Subscript',
+                'Superscript',
+            ],
+            [
+                'Undo',
+                'Redo',
+            ],
+            [
+                'Embed',
+                'Iframe',
+            ],
+            [
+                'Source',
+            ],
+            [
+                'Maximize',
+            ],
+        ],
+        'width':
+        '100%',
+        'extraPlugins':
+        ','.join([
+            'embed',
+            'iframe',
+        ]),
+        'extraAllowedContent':
+        'div(col-xs-*,col-sm-*,col-md-*,col-lg-*,container,container-fluid,row,ratio*); small',
+    },
+}
 
 try:
-    from .local_settings import *
+    from .local_settings import *  # pylint: disable=wildcard-import
 except ImportError:
     pass

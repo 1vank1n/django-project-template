@@ -1,29 +1,15 @@
 import os
+from typing import Any
 import uuid
 
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.deconstruct import deconstructible
-from model_utils import Choices
 from model_utils.managers import QueryManager
 
 
-class Common(models.Model):
-    """
-    Абстрактный класс. Содержит `статус` и `время создания / модификации` объекта.
-    """
-
-    STATUS = Choices(
-        ('draft', 'Черновик'),
-        ('published', 'Опубликовано'),
-    )
-
-    status = models.CharField(
-        verbose_name='Статус',
-        choices=STATUS,
-        default=STATUS.published,
-        max_length=50,
-    )
+class Date(models.Model):
+    """Дата / абстрактный класс"""
 
     created = models.DateTimeField(
         verbose_name='Дата создания',
@@ -35,18 +21,35 @@ class Common(models.Model):
         auto_now=True,
     )
 
-    objects = models.Manager()
-    published = QueryManager(status=STATUS.published)
-
     class Meta:
         abstract = True
         ordering = ['-created']
 
 
+class Common(Date):
+    """Общий / абстрактный класс"""
+
+    class Status(models.TextChoices):
+        DRAFT = 'draft', 'Черновик'
+        PUBLISHED = 'published', 'Опубликовано'
+
+    status = models.CharField(
+        verbose_name='Статус',
+        choices=Status.choices,
+        default=Status.PUBLISHED,
+        max_length=50,
+    )
+
+    objects = models.Manager()
+    drafted = QueryManager(status=Status.DRAFT)
+    published = QueryManager(status=Status.PUBLISHED)
+
+    class Meta(Date.Meta):
+        abstract = True
+
+
 class Seo(models.Model):
-    """
-    Абстрактный класс. Содержит мета описание и ключевые слова.
-    """
+    """SEO / абстрактный класс"""
 
     seo_title = models.CharField(
         verbose_name='SEO заголовок',
@@ -60,7 +63,6 @@ class Seo(models.Model):
         max_length=200,
         help_text='Рекомендуемая длина мета описания = 160 символов.',
         blank=True,
-        null=True,
     )
 
     seo_keywords = models.CharField(
@@ -68,7 +70,6 @@ class Seo(models.Model):
         max_length=2500,
         help_text='Укажите ключевые слова через запятую.',
         blank=True,
-        null=True,
     )
 
     class Meta:
@@ -76,6 +77,11 @@ class Seo(models.Model):
 
 
 class Single(models.Model):
+    """
+    Сингл / абстрактный класс
+    Модель ограничивает класс одним инстансом
+    """
+
     class Meta:
         abstract = True
 
@@ -85,12 +91,45 @@ class Single(models.Model):
         return super().save(*args, **kwargs)
 
 
+class Metadata(models.Model):
+    """Метадата / абстрактный клас"""
+
+    metadata = models.JSONField(
+        default=dict,
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        abstract = True
+
+    def get_value_from_metadata(self, key: str, default: Any = None) -> Any:
+        return self.metadata.get(key, default)
+
+    def store_value_in_metadata(self, items: dict):
+        if not self.metadata:
+            self.metadata = {}
+        self.metadata.update(items)
+
+    def clear_metadata(self):
+        self.metadata = {}
+
+    def delete_value_from_metadata(self, key: str):
+        if key in self.metadata:
+            del self.metadata[key]
+
+
 @deconstructible
 class PathAndRename(object):
+    """
+    Класс используется для генерации уникальных имён в FileField, ImageField
+    Ex.: upload_to=PathAndRename('app/model/field')
+    """
+
     def __init__(self, sub_path):
         self.path = sub_path
 
     def __call__(self, instance, filename):
         _, extension = os.path.splitext(filename)
-        filename = '{}{}'.format(uuid.uuid4().hex, extension)
+        filename = f'{uuid.uuid4().hex}{extension}'
         return os.path.join(self.path, filename)

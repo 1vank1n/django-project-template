@@ -1,15 +1,15 @@
 import { watch } from 'gulp';
 import {
-	srcFonts, srcImages, srcStyles, srcScripts, srcTemplates,
+	srcFonts, srcImages, srcScripts, srcStyles, srcTemplates
 } from './consts';
+import { bs } from './default';
 import fonts from './fonts';
 import images from './images';
-import svg from './svg';
-import stylesStyl from './stylesStyl';
-import stylesSass from './stylesSass';
-import scriptsVendor from './scriptsVendor';
 import scripts from './scripts';
-import { bs } from './default';
+import scriptsVendor from './scriptsVendor';
+import stylesSass from './stylesSass';
+import stylesStyl from './stylesStyl';
+import svg from './svg';
 
 const html = (cb) => {
 	bs.reload();

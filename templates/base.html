@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -40,14 +41,16 @@
 	<meta name="msapplication-square70x70logo" content="{% static 'images/mstile-70x70.png' %}">
 	{% endcomment %}
 
-	<title>{% block full_title %}{% block title %}{% endblock %} — Tail of title{% endblock full_title %}</title>
+	<title>{% block full_title %}{% block title %}{% endblock %}{% endblock full_title %}</title>
 
-	{% comment %} <link rel="canonical" href="{{ request.path }}"> {% endcomment %}
+	<link rel="canonical" href="{{ request.path }}">
 	<link rel="preload" href="{% static 'styles/base.css' %}" as="style">
-	<link rel="stylesheet" href="{% static 'styles/bootstrap4/base.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/bootstrap/base.css' %}">
 	<link rel="stylesheet" href="{% static 'styles/base.css' %}">
 
 	{% block head %}{% endblock head %}
+
+	{{ preference.header_html|safe }}
 
 </head>
 <body>
@@ -57,6 +60,8 @@
 	<script src="{% static 'scripts/base.js' %}"></script>
 
 	{% block footer_js %}{% endblock footer_js %}
+
+	{{ preference.footer_html|safe }}
 
 </body>
 </html>

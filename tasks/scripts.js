@@ -1,23 +1,13 @@
-import { src, dest } from 'gulp';
-import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
+import { dest, src } from 'gulp';
 import babel from 'gulp-babel';
 import concat from 'gulp-concat';
-import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
-
+import gulpif from 'gulp-if';
+import sourcemaps from 'gulp-sourcemaps';
+import { distScripts, isDevelopment, srcScripts } from './consts';
 import { bs } from './default';
-import { srcScripts, distScripts, isDevelopment } from './consts';
+
 
 const scripts = () => src(`${srcScripts}/*.js`)
-	.pipe(plumber({
-		errorHandler: notify.onError(
-			(err) => ({
-				title: 'Script',
-				message: err.message,
-			}),
-		),
-	}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(babel())
 	.pipe(concat('base.js'))
