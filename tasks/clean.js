@@ -1,7 +1,7 @@
-import del from 'del';
+import { rimraf } from 'rimraf';
 import { dist } from './consts';
 
-const clean = () => del([
+const clean = () => rimraf([
 	`${dist}/**/*`,
 	`!${dist}/ckeditor`,
 	`!${dist}/ckeditor/**/*`,

@@ -1,6 +1,6 @@
 import os
-from typing import Any
 import uuid
+from typing import Any
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -9,7 +9,9 @@ from model_utils.managers import QueryManager
 
 
 class Date(models.Model):
-    """Дата / абстрактный класс"""
+    """
+    Дата / абстрактный класс
+    """
 
     created = models.DateTimeField(
         verbose_name='Дата создания',
@@ -27,7 +29,9 @@ class Date(models.Model):
 
 
 class Common(Date):
-    """Общий / абстрактный класс"""
+    """
+    Общий / абстрактный класс
+    """
 
     class Status(models.TextChoices):
         DRAFT = 'draft', 'Черновик'
@@ -49,7 +53,9 @@ class Common(Date):
 
 
 class Seo(models.Model):
-    """SEO / абстрактный класс"""
+    """
+    SEO / абстрактный класс
+    """
 
     seo_title = models.CharField(
         verbose_name='SEO заголовок',
@@ -120,7 +126,7 @@ class Metadata(models.Model):
 
 
 @deconstructible
-class PathAndRename(object):
+class PathAndRename:
     """
     Класс используется для генерации уникальных имён в FileField, ImageField
     Ex.: upload_to=PathAndRename('app/model/field')

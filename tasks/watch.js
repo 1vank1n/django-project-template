@@ -1,6 +1,6 @@
 import { watch } from 'gulp';
 import {
-	srcFonts, srcImages, srcScripts, srcStyles, srcTemplates
+	srcFonts, srcImages, srcScripts, srcStyles, srcTemplates,
 } from './consts';
 import { bs } from './default';
 import fonts from './fonts';

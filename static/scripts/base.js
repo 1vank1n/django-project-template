@@ -1,4 +1,4 @@
 "use strict";
 
-$(function () {});
+(function () {});
 //# sourceMappingURL=base.js.map

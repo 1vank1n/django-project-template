@@ -4,7 +4,9 @@ from ..core.models import PathAndRename, Single
 
 
 class Preference(Single):
-    """Настройки"""
+    """
+    Настройки
+    """
 
     site_title = models.CharField(
         verbose_name='Название сайта',

@@ -6,7 +6,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import { distScripts, isDevelopment, srcScripts } from './consts';
 import { bs } from './default';
 
-
 const scripts = () => src(`${srcScripts}/*.js`)
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(babel())

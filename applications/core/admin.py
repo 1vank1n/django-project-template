@@ -11,11 +11,13 @@ class CommonAdmin(admin.ModelAdmin):
 
     def make_published(self, request, queryset):
         queryset.update(status=models.Common.STATUS.published)
-    make_published.short_description = 'Выставить статус "Опубликовано"' # yapf: disable
+
+    make_published.short_description = 'Выставить статус "Опубликовано"'
 
     def make_drafted(self, request, queryset):
         queryset.update(status=models.Common.STATUS.draft)
-    make_drafted.short_description = 'Выставить статус "Черновик"' # yapf: disable
+
+    make_drafted.short_description = 'Выставить статус "Черновик"'
 
 
 class CommonInlineAdmin:
@@ -23,18 +25,21 @@ class CommonInlineAdmin:
 
 
 class SeoAdmin(admin.ModelAdmin):
-
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
         newfieldsets = list(fieldsets)
-        fields = ['seo_title', 'seo_keywords', 'seo_description']
+        fields = [
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
+        ]
         for f in fields:
             newfieldsets[0][1]['fields'].remove(f)
-        newfieldsets.append(['SEO', {'classes': ('collapse', ), 'fields': fields}])
+        newfieldsets.append(['SEO', {'classes': ('collapse',), 'fields': fields}])
         return newfieldsets
 
 
-class ThumbAdminMixin():
+class ThumbAdminMixin:
     image_list = []
 
     def __init__(self, *args, **kwargs):
@@ -43,11 +48,12 @@ class ThumbAdminMixin():
                 name = f'thumb_{image}'
 
                 def fn(obj):
-                    photo = getattr(obj, image)  # pylint: disable=cell-var-from-loop
+                    photo = getattr(obj, image)
                     if not photo:
                         return '—'
                     return mark_safe(f'<img src="{photo.url}" width="100">')
-                fn.short_description = 'Превью' # yapf: disable
+
+                fn.short_description = 'Превью'
 
                 setattr(self, name, fn)
         super().__init__(*args, **kwargs)

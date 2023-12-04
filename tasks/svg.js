@@ -3,7 +3,6 @@ import gulpif from 'gulp-if';
 import svgSprite from 'gulp-svg-sprite';
 import { distImages, srcImages, srcStyles } from './consts';
 
-
 const svgSpriteConfig = {
 	shape: {
 		id: {
