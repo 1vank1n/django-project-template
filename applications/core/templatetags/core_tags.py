@@ -27,7 +27,8 @@ def ru_plural(value, variants):
         3 подписчика
         20 подписчиков
 
-        {{ total_followers|ru_plural:'подписчик,подписчика,подписчиков' }}
+    Использование:
+        total_followers|ru_plural:'подписчик,подписчика,подписчиков'
     """
 
     variants = variants.split(',')
