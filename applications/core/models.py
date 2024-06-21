@@ -91,7 +91,7 @@ class Single(models.Model):
     class Meta:
         abstract = True
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs) -> None:
         if not self.pk and self.__class__.objects.exists():
             raise ValidationError('Может быть только один объект этого класса')
         return super().save(*args, **kwargs)
@@ -112,17 +112,20 @@ class Metadata(models.Model):
     def get_value_from_metadata(self, key: str, default: Any = None) -> Any:
         return self.metadata.get(key, default)
 
-    def store_value_in_metadata(self, items: dict):
+    def store_value_in_metadata(self, items: dict) -> None:
         if not self.metadata:
             self.metadata = {}
         self.metadata.update(items)
+        return None
 
-    def clear_metadata(self):
+    def clear_metadata(self) -> None:
         self.metadata = {}
+        return None
 
-    def delete_value_from_metadata(self, key: str):
+    def delete_value_from_metadata(self, key: str) -> None:
         if key in self.metadata:
             del self.metadata[key]
+            return None
 
 
 @deconstructible
@@ -132,10 +135,10 @@ class PathAndRename:
     Ex.: upload_to=PathAndRename('app/model/field')
     """
 
-    def __init__(self, sub_path):
+    def __init__(self, sub_path: str) -> None:
         self.path = sub_path
 
-    def __call__(self, instance, filename):
+    def __call__(self, _, filename: str) -> str:
         _, extension = os.path.splitext(filename)
         filename = f'{uuid.uuid4().hex}{extension}'
         return os.path.join(self.path, filename)

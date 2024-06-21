@@ -42,5 +42,5 @@ class Preference(Single):
         verbose_name = 'настройки'
         verbose_name_plural = 'настройки'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return 'Настройки'

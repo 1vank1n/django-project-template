@@ -2,13 +2,12 @@
 
 It's very simple start point for django project.
 
-For `Django >= 4.0` compatible with `Python >= 3.11`. `Node ~= 20.10`.
+For `Django >= 4.2` compatible with `Python >= 3.11`. `Node ~= 20.10`.
 
 ## Install
 
 	django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip
-	poetry install
-	npm i
+	make deps
 
 ## Usage
 

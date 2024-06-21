@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib import admin
 from django.utils.html import mark_safe
 
@@ -5,27 +7,39 @@ from . import models
 
 
 class CommonAdmin(admin.ModelAdmin):
-    list_filter = ['status', 'created']
-    readonly_fields = ['created', 'modified']
-    actions = ['make_published', 'make_drafted']
+    list_filter = [
+        'status',
+        'created',
+    ]
+    readonly_fields = [
+        'created',
+        'modified',
+    ]
+    actions = [
+        'make_published',
+        'make_drafted',
+    ]
 
-    def make_published(self, request, queryset):
-        queryset.update(status=models.Common.STATUS.published)
+    def make_published(self, request, queryset) -> None:
+        queryset.update(status=models.Common.Status.PUBLISHED)
 
     make_published.short_description = 'Выставить статус "Опубликовано"'
 
-    def make_drafted(self, request, queryset):
-        queryset.update(status=models.Common.STATUS.draft)
+    def make_drafted(self, request, queryset) -> None:
+        queryset.update(status=models.Common.Status.DRAFT)
 
     make_drafted.short_description = 'Выставить статус "Черновик"'
 
 
 class CommonInlineAdmin:
-    readonly_fields = ['created', 'modified']
+    readonly_fields = [
+        'created',
+        'modified',
+    ]
 
 
 class SeoAdmin(admin.ModelAdmin):
-    def get_fieldsets(self, request, obj=None):
+    def get_fieldsets(self, request, obj=None) -> list[tuple[str | None, dict[str, Any]]]:
         fieldsets = super().get_fieldsets(request, obj)
         newfieldsets = list(fieldsets)
         fields = [
@@ -42,7 +56,7 @@ class SeoAdmin(admin.ModelAdmin):
 class ThumbAdminMixin:
     image_list = []
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         if self.image_list:
             for image in self.image_list:
                 name = f'thumb_{image}'

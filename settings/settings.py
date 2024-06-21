@@ -1,4 +1,4 @@
-from split_settings.tools import optional, include
+from split_settings.tools import include, optional
 
 include(
     'components/apps.py',

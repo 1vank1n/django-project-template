@@ -1,6 +1,8 @@
 import json
+from typing import Any
 
 from django import template
+from django.db.models import QuerySet
 
 from applications.core.models import Common
 
@@ -8,17 +10,17 @@ register = template.Library()
 
 
 @register.filter
-def published(value):
-    return value.filter(status=Common.STATUS.published)
+def published(value: QuerySet) -> QuerySet:
+    return value.filter(status=Common.Status.PUBLISHED)
 
 
 @register.filter
-def to_json(value):
+def to_json(value: Any) -> str:
     return json.dumps(value)
 
 
 @register.filter
-def ru_plural(value, variants):
+def ru_plural(value: str, variants: str) -> str:
     """
     Множественные окончания для русских слов.
 

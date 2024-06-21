@@ -14,8 +14,11 @@ def logger(
     user,
     message,
     action_flag=ADDITION,
-):
-    """Записать в LogEntry сообщение по объекту"""
+) -> None:
+    """
+    Записать в LogEntry сообщение по объекту
+    """
+
     LogEntry.objects.log_action(
         user_id=user.pk,
         content_type_id=get_content_type_for_model(obj).pk,
@@ -24,6 +27,7 @@ def logger(
         action_flag=action_flag,
         change_message=message,
     )
+    return None
 
 
 def mail(
@@ -32,8 +36,11 @@ def mail(
     context_dict,
     email_list,
     subject,
-):
-    """Шаблонизация и отправка письма"""
+) -> int:
+    """
+    Шаблонизация и отправка письма
+    """
+
     context = {
         'domain': Site.objects.get_current().domain,
         'preference': Preference.objects.first() or {},
