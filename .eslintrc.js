@@ -1,39 +1,16 @@
-module.exports = { // eslint-disable-line
-	'env': {
-		'browser': true,
-		'es2021': true,
-		'jquery':  true
+module.exports = {
+	parser: '@babel/eslint-parser',
+	extends: 'airbnb-base',
+	rules: {
+		indent: ['error', 'tab'],
+		'no-tabs': 0,
 	},
-	'extends': [
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended'
-	],
-	'overrides': [
-	],
-	'parser': '@typescript-eslint/parser',
-	'parserOptions': {
-		'ecmaVersion': 'latest',
-		'sourceType': 'module'
+	env: {
+		browser: true,
+		jquery: true,
 	},
-	'plugins': [
-		'@typescript-eslint'
-	],
-	'rules': {
-		'indent': [
-			'error',
-			'tab'
-		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
-		'semi': [
-			'error',
-			'always'
-		]
-	}
+	globals: {
+		flexibility: true,
+		bootstrap: true,
+	},
 };
