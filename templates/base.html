@@ -43,7 +43,8 @@
 
 	<title>{% block full_title %}{% block title %}{% endblock %}{% endblock full_title %}</title>
 
-	<link rel="canonical" href="{{ request.path }}">
+	<link rel="canonical" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.path }}">
+
 	<link rel="preload" href="{% static 'styles/base.css' %}" as="style">
 	<link rel="stylesheet" href="{% static 'styles/bootstrap/base.css' %}">
 	<link rel="stylesheet" href="{% static 'styles/base.css' %}">
