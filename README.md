@@ -1,38 +1,64 @@
 # Django Project Template
 
-It's very simple start point for django project.
+[English](README.md) | [Русский](README.ru.md)
 
-For `Django >= 4.2` compatible with `Python >= 3.11`. `Node ~= 20.10`.
+A practical starting point for Django projects with a modern frontend build.
 
-## Install
+## Technologies
 
-	django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip
-	make deps
+- **Python 3.11** with **Poetry** for backend dependencies
+- **Django 4.2+** as the web framework
+- **Node.js 20** with **Gulp** and **Babel** for asset pipeline
+- **ESLint** and **Ruff** for linting
+- **Sass/Stylus** for styles
 
-## Usage
+## Getting Started
 
-### Server (one terminal tab)
-	python manage.py runserver
+1. Create a new project from the template  
+   `django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip`
+2. (Optional) Create virtual environment in `.env/`  
+   `python -m venv .env && source .env/bin/activate`
+3. Install Python and Node dependencies  
+   `make deps`
+4. Adjust environment variables in `config/.env.local`
+5. Apply migrations and run development servers
 
-### Frontend (other terminal tab)
-	npm start
+   ```
+   python manage.py migrate
+   python manage.py runserver   # backend
+   npm start                    # frontend assets with live reload
+   ```
 
+## Deployment
 
-## Structure
+- Set production values in `config/.env.local` (disable `DEBUG`, set `SECRET_KEY`, configure `DATABASE_URL`)
+- Build static assets: `npm run build`
+- Collect static files: `python manage.py collectstatic`
+- Run under a WSGI/ASGI server such as `gunicorn` or `uvicorn`
 
-Recommend installation virtualenv in `.env` folder in project folder.
+## Project Structure
 
 ```
-/.env	- virtualenv
-/.git
-/applications - folder for django applications
----/main      - start app point that I offer for you
-/frontend     - folder for source "frontend" files
----/images    - gulp tasks look at this folder, files get->optimize->put to `/static/images/`
----/scripts   - gulp tasks look at this folder, files get->minify->put to `/static/scripts/`
----/styles    - gulp tasks look at this folder, get _common.styl->optimize->put to `/static/styles/base.css`
-/settings     - django settings
-/tasks        - gulp tasks
+applications/   Django apps (core, main)
+config/         environment configuration (.env.local)
+frontend/       source frontend files (images, scripts, styles)
+settings/       Django project settings
+tasks/          Gulp tasks
+templates/      Django templates
+static/         compiled static assets (generated)
+logs/           runtime logs
 ```
 
-Any question? Create issue or type me to email = lukyanets.ivan@gmail.com
+## Configuration Files
+
+- `.babelrc` – Babel preset configuration for modern JS
+- `.editorconfig` – editor formatting rules
+- `.eslintrc.js` – ESLint rules for JavaScript
+- `.gitignore` – files ignored by Git
+- `.nvmrc` – Node.js version for nvm
+- `.python-version` – Python version for pyenv
+- `config/.env.local` – default environment variables for local development
+
+## Contact
+
+Questions? Create an issue or email lukyanets.ivan@gmail.com
