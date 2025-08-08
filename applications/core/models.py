@@ -98,7 +98,7 @@ class Single(models.Model):
 
 
 class Metadata(models.Model):
-    """Метадата / абстрактный клас"""
+    """Метадата / абстрактный класс"""
 
     metadata = models.JSONField(
         default=dict,
