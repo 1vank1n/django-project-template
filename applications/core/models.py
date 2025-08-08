@@ -110,6 +110,8 @@ class Metadata(models.Model):
         abstract = True
 
     def get_value_from_metadata(self, key: str, default: Any = None) -> Any:
+        if not self.metadata:
+            return default
         return self.metadata.get(key, default)
 
     def store_value_in_metadata(self, items: dict) -> None:
@@ -123,9 +125,9 @@ class Metadata(models.Model):
         return None
 
     def delete_value_from_metadata(self, key: str) -> None:
-        if key in self.metadata:
+        if self.metadata and key in self.metadata:
             del self.metadata[key]
-            return None
+        return None
 
 
 @deconstructible
