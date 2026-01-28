@@ -6,21 +6,21 @@ A practical starting point for Django projects with a modern frontend build.
 
 ## Technologies
 
-- **Python 3.11** with **Poetry** for backend dependencies
+- **Python 3.12** with **Poetry** for backend dependencies
 - **Django 4.2+** as the web framework
-- **Node.js 20** with **Gulp** and **Babel** for asset pipeline
+- **Node.js 25** with **Gulp** and **Babel** for asset pipeline
 - **ESLint** and **Ruff** for linting
 - **Sass/Stylus** for styles
 
 ## Getting Started
 
-1. Create a new project from the template  
+1. Create a new project from the template
    `django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip`
-2. (Optional) Create virtual environment in `.env/`  
-   `python -m venv .env && source .env/bin/activate`
-3. Install Python and Node dependencies  
+2. (Optional) Create virtual environment in `.venv/`
+   `python -m venv .venv && source .venv/bin/activate`
+3. Install Python and Node dependencies
    `make deps`
-4. Adjust environment variables in `config/.env.local`
+4. Adjust environment variables `.env.template` → `.env`
 5. Apply migrations and run development servers
 
    ```
@@ -31,7 +31,7 @@ A practical starting point for Django projects with a modern frontend build.
 
 ## Deployment
 
-- Set production values in `config/.env.local` (disable `DEBUG`, set `SECRET_KEY`, configure `DATABASE_URL`)
+- Set production values in `.env` (disable `DEBUG`, set `SECRET_KEY`, configure `DATABASE_URL`)
 - Build static assets: `npm run build`
 - Collect static files: `python manage.py collectstatic`
 - Run under a WSGI/ASGI server such as `gunicorn` or `uvicorn`
@@ -40,7 +40,6 @@ A practical starting point for Django projects with a modern frontend build.
 
 ```
 applications/   Django apps (core, main)
-config/         environment configuration (.env.local)
 frontend/       source frontend files (images, scripts, styles)
 settings/       Django project settings
 tasks/          Gulp tasks
@@ -57,7 +56,7 @@ logs/           runtime logs
 - `.gitignore` – files ignored by Git
 - `.nvmrc` – Node.js version for nvm
 - `.python-version` – Python version for pyenv
-- `config/.env.local` – default environment variables for local development
+- `.env.template` – default environment variables for local development
 
 ## Contact
 

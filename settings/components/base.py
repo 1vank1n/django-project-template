@@ -5,7 +5,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env(BASE_DIR / 'config/.env.local')
+environ.Env.read_env(BASE_DIR / '.env')
 
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
@@ -59,7 +59,7 @@ SITE_ID = 1
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = (BASE_DIR / 'static',)
-STATIC_ROOT = BASE_DIR / 'static_nginx'
+STATIC_ROOT = BASE_DIR / 'static_external'
 STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

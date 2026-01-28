@@ -22,7 +22,7 @@ django-spurl = "^0.6"
 django-stubs = "^5.0"
 ipython = "^8.25"
 pillow = "^10.3"
-python = "^3.11"
+python = "^3.12"
 python-dateutil = "^2.8.2"
 requests = "^2.32"
 singlemodeladmin = "^0.9"
@@ -35,7 +35,7 @@ docutils = "^0.21.2"
 psycopg2-binary = "^2.9"
 pytest = "^8.4.1"
 pytest-django = "^4.11.1"
-ruff = "^0.4"
+ruff = "^0.14"
 
 [build-system]
 requires = ["poetry-core"]
@@ -66,8 +66,7 @@ exclude = [
     ".env",
     ".env_legacy",
 ]
-target-version = "py311"
-
+target-version = "py312"
 
 [tool.ruff.lint]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
@@ -84,6 +83,7 @@ max-complexity = 10
 
 [tool.ruff.lint.per-file-ignores]
 "import/*" = ["T20"]
+"__init__.py" = ["F401"]
 
 [tool.ruff.format]
 quote-style = 'single'

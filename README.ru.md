@@ -6,21 +6,21 @@
 
 ## Технологии
 
-- **Python 3.11** и **Poetry** для управления зависимостями
+- **Python 3.12** и **Poetry** для управления зависимостями
 - **Django 4.2+** как веб-фреймворк
-- **Node.js 20**, **Gulp** и **Babel** для сборки фронтенда
+- **Node.js 25**, **Gulp** и **Babel** для сборки фронтенда
 - **ESLint** и **Ruff** для статического анализа
 - **Sass/Stylus** для оформления
 
 ## Быстрый старт
 
-1. Создайте проект из шаблона  
+1. Создайте проект из шаблона
    `django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip`
-2. (Опционально) создайте виртуальное окружение в `.env/`  
-   `python -m venv .env && source .env/bin/activate`
-3. Установите зависимости Python и Node  
+2. (Опционально) создайте виртуальное окружение в `.venv/`
+   `python -m venv .venv && source .venv/bin/activate`
+3. Установите зависимости Python и Node
    `make deps`
-4. Настройте переменные окружения в `config/.env.local`
+4. Настройте переменные окружения `.env.template` → `.env`
 5. Примените миграции и запустите сервера разработки
 
    ```
@@ -31,7 +31,7 @@
 
 ## Развертывание
 
-- Укажите боевые значения в `config/.env.local` (`DEBUG=off`, `SECRET_KEY`, `DATABASE_URL`)
+- Укажите боевые значения в `.env` (`DEBUG=off`, `SECRET_KEY`, `DATABASE_URL`)
 - Соберите статические ресурсы: `npm run build`
 - Выполните `python manage.py collectstatic`
 - Запускайте под WSGI/ASGI-сервером (`gunicorn`, `uvicorn` и т.п.)
@@ -40,7 +40,6 @@
 
 ```
 applications/   приложения Django (core, main)
-config/         конфигурация окружения (.env.local)
 frontend/       исходники фронтенда (images, scripts, styles)
 settings/       настройки проекта Django
 tasks/          задачи Gulp
@@ -57,7 +56,7 @@ logs/           журналы работы
 - `.gitignore` — игнорируемые Git файлы
 - `.nvmrc` — версия Node.js для nvm
 - `.python-version` — версия Python для pyenv
-- `config/.env.local` — переменные окружения по умолчанию для разработки
+- `.env.template` — переменные окружения по умолчанию для разработки
 
 ## Контакты
 

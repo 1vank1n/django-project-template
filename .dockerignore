@@ -1,0 +1,39 @@
+# 📦 Временные и кеши
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+*.pot
+*.mo
+*.coverage
+*.egg-info/
+coverage.xml
+.DS_Store
+
+# 🐍 Виртуальные окружения
+.venv/
+
+# 💻 IDE
+.vscode/
+.idea/
+
+# 🧪 Статические и медиаданные
+static/
+static_external/
+media/
+logs/
+data/
+import/
+frontend/node_modules/
+package-lock.json
+
+# 🧷 Docker специфичное
+nginx/ssl
+nginx/logs
+nginx/www
+promtail/
+
+# 🔄 Версионный маркер
+VERSION
