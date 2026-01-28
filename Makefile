@@ -4,10 +4,10 @@ deps:
 	pnpm install
 
 lint:
-	$(DOCKER_EXEC) ruff check && ruff format
+	ruff check && ruff format
 
 lint-check:
-	$(DOCKER_EXEC) ruff check && ruff format --check
+	ruff check && ruff format --check
 
 test:
 	poetry run pytest --disable-warnings

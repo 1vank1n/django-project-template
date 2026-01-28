@@ -21,8 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	build-essential curl gettext make \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV POETRY_VERSION=1.8.3
-RUN pip install --no-cache-dir "poetry==$POETRY_VERSION"
+RUN pip install --no-cache-dir "poetry==1.8.3"
 
 COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false \
