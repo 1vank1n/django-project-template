@@ -19,7 +19,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.29.3",
-    "eslint": "^8.55.0",
+    "eslint": "^9.26.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.0",
     "gulp-autoprefixer": "^8.0.0",
