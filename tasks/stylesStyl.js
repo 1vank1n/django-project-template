@@ -1,6 +1,6 @@
 import autoprefixer from 'autoprefixer-stylus';
 import { dest, src } from 'gulp';
-import nano from 'gulp-cssnano';
+import cleanCSS from 'gulp-clean-css';
 import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
@@ -19,7 +19,7 @@ const stylesStyl = () => src(['base.styl'], {
 		'include css': true,
 	}))
 	.pipe(gulpif(!isDevelopment, gcmq()))
-	.pipe(gulpif(!isDevelopment, nano()))
+	.pipe(gulpif(!isDevelopment, cleanCSS()))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(dest(distStyles))
 	.pipe(bs.stream());
