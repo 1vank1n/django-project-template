@@ -1,15 +1,14 @@
-import { watch } from 'gulp';
+import gulp from 'gulp';
 import {
 	srcFonts, srcImages, srcScripts, srcStyles, srcTemplates,
-} from './consts';
-import { bs } from './default';
-import fonts from './fonts';
-import images from './images';
-import scripts from './scripts';
-import scriptsVendor from './scriptsVendor';
-import stylesSass from './stylesSass';
-import stylesStyl from './stylesStyl';
-import svg from './svg';
+} from './consts.js';
+import { bs } from './default.js';
+import fonts from './fonts.js';
+import images from './images.js';
+import scripts from './scripts.js';
+import stylesSass from './stylesSass.js';
+import stylesStyl from './stylesStyl.js';
+import svg from './svg.js';
 
 const html = (cb) => {
 	bs.reload();
@@ -17,17 +16,14 @@ const html = (cb) => {
 };
 
 const watcher = () => {
-	global.watch = true;
-
-	watch(`${srcFonts}/**`, fonts);
-	watch(`${srcImages}/**`, images);
-	watch(`${srcImages}/**/icon*.svg`, svg);
-	watch(`${srcStyles}/**/*`, stylesStyl);
-	watch(`${srcStyles}/**/*`, stylesSass);
-	watch(`${srcScripts}/**/*`, scriptsVendor);
-	watch(`${srcScripts}/**/*`, scripts);
-	watch(`${srcTemplates}/**/*`, html);
-	watch('applications/**/templates/**/*', html);
+	gulp.watch(`${srcFonts}/**`, fonts);
+	gulp.watch(`${srcImages}/**`, images);
+	gulp.watch(`${srcImages}/**/icon*.svg`, svg);
+	gulp.watch(`${srcStyles}/**/*`, stylesStyl);
+	gulp.watch(`${srcStyles}/**/*`, stylesSass);
+	gulp.watch(`${srcScripts}/**/*`, scripts);
+	gulp.watch(`${srcTemplates}/**/*`, html);
+	gulp.watch('applications/**/templates/**/*', html);
 };
 
 export default watcher;

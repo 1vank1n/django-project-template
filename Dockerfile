@@ -2,8 +2,8 @@
 FROM node:25-alpine AS frontend_builder
 WORKDIR /app
 
-RUN npm install -g pnpm@10.15
-COPY package.json pnpm-lock.yaml gulpfile.babel.js .babelrc ./
+RUN npm install -g pnpm@10
+COPY package.json pnpm-lock.yaml gulpfile.js ./
 RUN pnpm install
 
 COPY ./tasks ./tasks
@@ -21,11 +21,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	build-essential curl gettext make \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir "poetry==1.8.3"
+RUN pip install --no-cache-dir "poetry>=2.0,<3.0"
 
 COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false \
-	&& poetry install --no-root --no-interaction
+	&& poetry install --without dev --no-root --no-interaction
 
 COPY . ./
 COPY --from=frontend_builder /app/static/ /app/static/

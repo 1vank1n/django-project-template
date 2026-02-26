@@ -1,7 +1,7 @@
-import { dest, src } from 'gulp';
+import gulp from 'gulp';
 import gulpif from 'gulp-if';
 import svgSprite from 'gulp-svg-sprite';
-import { distImages, srcImages, srcStyles } from './consts';
+import { distImages, srcImages, srcStyles } from './consts.js';
 
 const svgSpriteConfig = {
 	shape: {
@@ -29,11 +29,11 @@ const svgSpriteConfig = {
 	},
 };
 
-const svg = () => src(['**/icon*.svg'], {
+const svg = () => gulp.src(['**/icon*.svg'], {
 	cwd: srcImages,
 })
 	.pipe(svgSprite(svgSpriteConfig))
-	.pipe(gulpif(/\.styl$/, dest(srcStyles)))
-	.pipe(gulpif(/\.svg$/, dest(distImages)));
+	.pipe(gulpif(/\.styl$/, gulp.dest(srcStyles)))
+	.pipe(gulpif(/\.svg$/, gulp.dest(distImages)));
 
 export default svg;

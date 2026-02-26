@@ -103,7 +103,6 @@ class Metadata(models.Model):
     metadata = models.JSONField(
         default=dict,
         blank=True,
-        null=True,
     )
 
     class Meta:

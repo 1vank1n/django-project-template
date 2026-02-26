@@ -61,8 +61,8 @@ class ThumbAdminMixin:
             for image in self.image_list:
                 name = f'thumb_{image}'
 
-                def fn(obj):
-                    photo = getattr(obj, image)
+                def fn(obj, field=image):
+                    photo = getattr(obj, field)
                     if not photo:
                         return '—'
                     return mark_safe(f'<img src="{photo.url}" width="100">')

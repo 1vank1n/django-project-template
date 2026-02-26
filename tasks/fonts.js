@@ -1,7 +1,7 @@
-import { dest, src } from 'gulp';
-import { distFonts, srcFonts } from './consts';
+import gulp from 'gulp';
+import { distFonts, srcFonts } from './consts.js';
 
-const fonts = () => src(`${srcFonts}/*`)
-	.pipe(dest(distFonts));
+const fonts = () => gulp.src(`${srcFonts}/*`)
+	.pipe(gulp.dest(distFonts));
 
 export default fonts;

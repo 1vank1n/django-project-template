@@ -1,13 +1,11 @@
 import { Transform } from 'stream';
-import { dest, src } from 'gulp';
+import gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
-import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
 import Stylus from 'stylus';
-import { distStyles, isDevelopment, srcStyles } from './consts';
-import { bs } from './default';
+import { distStyles, isDevelopment, srcStyles } from './consts.js';
+import { bs } from './default.js';
 
 function compileStylus(options = {}) {
 	return new Transform({
@@ -31,16 +29,14 @@ function compileStylus(options = {}) {
 	});
 }
 
-const stylesStyl = () => src(['base.styl'], {
+const stylesStyl = () => gulp.src(['base.styl'], {
 	cwd: srcStyles,
+	sourcemaps: isDevelopment,
 })
-	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(compileStylus({ 'include css': true }))
 	.pipe(autoprefixer())
-	.pipe(gulpif(!isDevelopment, gcmq()))
 	.pipe(gulpif(!isDevelopment, cleanCSS()))
-	.pipe(gulpif(isDevelopment, sourcemaps.write()))
-	.pipe(dest(distStyles))
+	.pipe(gulp.dest(distStyles, { sourcemaps: isDevelopment ? '.' : false }))
 	.pipe(bs.stream());
 
 export default stylesStyl;

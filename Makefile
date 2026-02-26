@@ -5,9 +5,11 @@ deps:
 
 lint:
 	ruff check && ruff format
+	pnpm lint
 
 lint-check:
 	ruff check && ruff format --check
+	pnpm lint
 
 test:
 	poetry run pytest --disable-warnings
