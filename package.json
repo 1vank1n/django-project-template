@@ -14,8 +14,6 @@
     "overrides": {
       "braces": ">=3.0.3",
       "micromatch": ">=4.0.8",
-      "autoprefixer-stylus>postcss": ">=7.0.36",
-      "autoprefixer-stylus>autoprefixer": "9.8.8",
       "@gulp-sourcemaps/identity-map>postcss": ">=7.0.36"
     }
   },
@@ -24,7 +22,6 @@
     "@babel/eslint-parser": "^7.28.6",
     "@babel/preset-env": "^7.29.0",
     "@babel/register": "^7.28.6",
-    "autoprefixer-stylus": "^1.0.0",
     "browser-sync": "^3.0.4",
     "eslint": "^9.28.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -38,9 +35,9 @@
     "gulp-if": "^3.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
-    "gulp-stylus": "^3.0.1",
     "gulp-svg-sprite": "^2.0.3",
     "rimraf": "^6.1.3",
-    "sass": "^1.97.3"
+    "sass": "^1.97.3",
+    "stylus": "^0.64.0"
   }
 }
