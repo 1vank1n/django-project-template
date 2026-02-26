@@ -8,9 +8,10 @@ A practical starting point for Django projects with a modern frontend build.
 
 - **Python 3.12** with **Poetry** for backend dependencies
 - **Django 4.2+** as the web framework
-- **Node.js 25** with **Gulp** and **Babel** for asset pipeline
+- **Node.js 25** with **Gulp** for asset pipeline
 - **ESLint** and **Ruff** for linting
 - **Sass/Stylus** for styles
+- **Gunicorn** for production WSGI serving
 
 ## Getting Started
 
@@ -50,10 +51,10 @@ logs/           runtime logs
 
 ## Configuration Files
 
-- `.babelrc` – Babel preset configuration for modern JS
 - `.editorconfig` – editor formatting rules
-- `.eslintrc.js` – ESLint rules for JavaScript
+- `eslint.config.js` – ESLint rules for JavaScript (flat config)
 - `.gitignore` – files ignored by Git
+- `.dockerignore` – files excluded from Docker build context
 - `.nvmrc` – Node.js version for nvm
 - `.python-version` – Python version for pyenv
 - `.env.template` – default environment variables for local development
