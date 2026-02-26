@@ -1,6 +1,6 @@
 import { dest, src } from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
-import nano from 'gulp-cssnano';
+import cleanCSS from 'gulp-clean-css';
 import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
@@ -16,7 +16,7 @@ const stylesSass = () => src(['base.scss'], {
 	.pipe(sass())
 	.pipe(autoprefixer())
 	.pipe(gulpif(!isDevelopment, gcmq()))
-	.pipe(gulpif(!isDevelopment, nano()))
+	.pipe(gulpif(!isDevelopment, cleanCSS()))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(dest(`${distStyles}/bootstrap/`))
 	.pipe(bs.stream());
