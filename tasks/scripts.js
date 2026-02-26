@@ -1,17 +1,15 @@
-import { dest, src } from 'gulp';
+import gulp from 'gulp';
 import babel from 'gulp-babel';
 import concat from 'gulp-concat';
-import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
-import { distScripts, isDevelopment, srcScripts } from './consts';
-import { bs } from './default';
+import { distScripts, isDevelopment, srcScripts } from './consts.js';
+import { bs } from './default.js';
 
-const scripts = () => src(`${srcScripts}/*.js`)
-	.pipe(gulpif(isDevelopment, sourcemaps.init()))
-	.pipe(babel())
+const scripts = () => gulp.src(`${srcScripts}/*.js`, {
+	sourcemaps: isDevelopment,
+})
+	.pipe(babel({ presets: ['@babel/env'] }))
 	.pipe(concat('base.js'))
-	.pipe(sourcemaps.write('.'))
-	.pipe(dest(distScripts))
+	.pipe(gulp.dest(distScripts, { sourcemaps: isDevelopment ? '.' : false }))
 	.pipe(bs.stream());
 
 export default scripts;

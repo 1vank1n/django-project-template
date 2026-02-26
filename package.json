@@ -2,39 +2,34 @@
   "name": "django_project_template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development gulp",
-    "build": "NODE_ENV=production BUILD=True gulp"
+    "build": "NODE_ENV=production BUILD=True gulp",
+    "lint": "eslint frontend/"
   },
   "author": "Ivan Lukyanets <ivan@il-studio.ru>",
   "license": "Commercial",
   "pnpm": {
     "overrides": {
       "braces": ">=3.0.3",
-      "micromatch": ">=4.0.8",
-      "@gulp-sourcemaps/identity-map>postcss": ">=7.0.36"
+      "micromatch": ">=4.0.8"
     }
   },
   "dependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/eslint-parser": "^7.28.6",
     "@babel/preset-env": "^7.29.0",
-    "@babel/register": "^7.28.6",
     "browser-sync": "^3.0.4",
     "eslint": "^9.28.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.32.0",
+    "globals": "^17.3.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-group-css-media-queries": "^1.2.2",
     "gulp-if": "^3.0.0",
     "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
     "gulp-svg-sprite": "^2.0.3",
     "rimraf": "^6.1.3",
     "sass": "^1.97.3",

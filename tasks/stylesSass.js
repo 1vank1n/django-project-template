@@ -1,24 +1,22 @@
-import { dest, src } from 'gulp';
+import gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
-import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
-import { distStyles, isDevelopment, srcStyles } from './consts';
-import { bs } from './default';
+import gulpSass from 'gulp-sass';
+import * as sassCompiler from 'sass';
+import { distStyles, isDevelopment, srcStyles } from './consts.js';
+import { bs } from './default.js';
 
-const sass = require('gulp-sass')(require('sass'));
+const sass = gulpSass(sassCompiler);
 
-const stylesSass = () => src(['base.scss'], {
+const stylesSass = () => gulp.src(['base.scss'], {
 	cwd: srcStyles,
+	sourcemaps: isDevelopment,
 })
-	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(sass())
 	.pipe(autoprefixer())
-	.pipe(gulpif(!isDevelopment, gcmq()))
 	.pipe(gulpif(!isDevelopment, cleanCSS()))
-	.pipe(gulpif(isDevelopment, sourcemaps.write()))
-	.pipe(dest(`${distStyles}/bootstrap/`))
+	.pipe(gulp.dest(`${distStyles}/bootstrap/`, { sourcemaps: isDevelopment ? '.' : false }))
 	.pipe(bs.stream());
 
 export default stylesSass;
