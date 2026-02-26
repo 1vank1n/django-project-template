@@ -18,7 +18,6 @@ THIRD_APPS = [
     'health_check.db',
     'health_check.storage',
     'health_check',
-    'spurl',
 ]
 
 CUSTOM_APPS = [
