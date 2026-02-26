@@ -15,9 +15,6 @@
       "braces": ">=3.0.3",
       "micromatch": ">=4.0.8",
       "@gulp-sourcemaps/identity-map>postcss": ">=7.0.36"
-    },
-    "patchedDependencies": {
-      "clone-stats@1.0.0": "patches/clone-stats@1.0.0.patch"
     }
   },
   "dependencies": {
