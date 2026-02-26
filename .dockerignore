@@ -1,39 +1,15 @@
-# 📦 Временные и кеши
-__pycache__/
+.git
+.venv
+.vscode
+__pycache__
 *.pyc
-*.pyo
-*.pyd
+node_modules
+media
+db.sqlite3
 *.log
-*.sqlite3
-*.pot
-*.mo
-*.coverage
-*.egg-info/
-coverage.xml
+logs
+static
+static_external
+.env
 .DS_Store
-
-# 🐍 Виртуальные окружения
-.venv/
-
-# 💻 IDE
-.vscode/
-.idea/
-
-# 🧪 Статические и медиаданные
-static/
-static_external/
-media/
-logs/
-data/
-import/
-frontend/node_modules/
-package-lock.json
-
-# 🧷 Docker специфичное
-nginx/ssl
-nginx/logs
-nginx/www
-promtail/
-
-# 🔄 Версионный маркер
-VERSION
+AGENTS.md
