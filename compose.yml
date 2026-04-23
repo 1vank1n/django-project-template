@@ -1,3 +1,9 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   app:
     build:
@@ -5,9 +11,17 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
+    # Volumes ignored in S3 mode — stay empty, harmless.
     volumes:
       - ./media:/app/media
       - ./static_external:/app/static_external
     ports:
-      - "8000:8000"
+      - "${APP_PORT:-8000}:8000"
     restart: unless-stopped
+    logging: *default-logging
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
