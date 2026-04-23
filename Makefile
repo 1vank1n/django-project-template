@@ -14,6 +14,9 @@ lint-check:
 test:
 	uv run pytest --disable-warnings
 
+shell:
+	uv run python manage.py shell_plus --ipython
+
 # Docker
 
 build:

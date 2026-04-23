@@ -34,6 +34,25 @@ A practical starting point for Django projects with a modern frontend build.
 - Set production values in `.env` (disable `DEBUG`, set `SECRET_KEY`, configure `DATABASE_URL`, tune `GUNICORN_*`)
 - Run `make deploy` — builds image, starts container, applies migrations, collects static
 
+## Storage (optional S3)
+
+Static and media files are served from local `static/` and `media/` by default.
+To offload them to S3-compatible storage (AWS S3, MinIO, Cloudflare R2, Backblaze B2, etc.),
+set `AWS_STORAGE_BUCKET_NAME` in `.env` — everything else switches automatically.
+
+Minimal `.env` for S3:
+
+```
+AWS_STORAGE_BUCKET_NAME=my-bucket
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+AWS_S3_REGION_NAME=us-east-1
+# AWS_S3_ENDPOINT_URL=https://<minio-or-r2-endpoint>/   # only for S3-compatible
+# AWS_S3_CUSTOM_DOMAIN=cdn.example.com                  # only for public CDN
+```
+
+If `AWS_STORAGE_BUCKET_NAME` is empty — Django falls back to local filesystem.
+
 ## Project Structure
 
 ```

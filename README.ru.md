@@ -34,6 +34,25 @@
 - Укажите боевые значения в `.env` (`DEBUG=off`, `SECRET_KEY`, `DATABASE_URL`, `GUNICORN_*`)
 - Запустите `make deploy` — соберёт образ, поднимет контейнер, применит миграции, соберёт статику
 
+## Хранилище (опциональный S3)
+
+По умолчанию static и media хранятся локально в `static/` и `media/`.
+Чтобы перенести их в S3-совместимое хранилище (AWS S3, MinIO, Cloudflare R2, Backblaze B2 и т.п.),
+задайте `AWS_STORAGE_BUCKET_NAME` в `.env` — всё остальное переключится автоматически.
+
+Минимальный `.env` для S3:
+
+```
+AWS_STORAGE_BUCKET_NAME=my-bucket
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+AWS_S3_REGION_NAME=us-east-1
+# AWS_S3_ENDPOINT_URL=https://<minio-или-r2-endpoint>/  # только для S3-совместимых
+# AWS_S3_CUSTOM_DOMAIN=cdn.example.com                  # только при публичном CDN
+```
+
+Если `AWS_STORAGE_BUCKET_NAME` пустой — Django работает с локальной файловой системой.
+
 ## Структура проекта
 
 ```
