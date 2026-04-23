@@ -2,16 +2,16 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	root: resolve(__dirname, 'frontend'),
+	root: resolve(import.meta.dirname, 'frontend'),
 	base: '/static/vite/',
 	build: {
-		outDir: resolve(__dirname, 'static/vite'),
+		outDir: resolve(import.meta.dirname, 'static/vite'),
 		emptyOutDir: true,
 		manifest: 'manifest.json',
 		rollupOptions: {
 			input: {
-				base: resolve(__dirname, 'frontend/scripts/base.js'),
-				styles: resolve(__dirname, 'frontend/styles/base.scss'),
+				base: resolve(import.meta.dirname, 'frontend/scripts/base.js'),
+				styles: resolve(import.meta.dirname, 'frontend/styles/base.scss'),
 			},
 		},
 	},
