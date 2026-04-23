@@ -33,7 +33,7 @@ django-coverage-plugin = "^3.1.0"
 django-debug-toolbar = "^4.4"
 docutils = "^0.21.2"
 psycopg2-binary = "^2.9"
-pytest = "^8.4.1"
+pytest = "^9.0.3"
 pytest-django = "^4.11.1"
 ruff = "^0.14"
 
