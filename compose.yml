@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - .env
     volumes:
       - ./media:/app/media
       - ./static_external:/app/static_external

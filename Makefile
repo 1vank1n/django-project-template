@@ -1,16 +1,18 @@
 deps:
-	poetry install --with dev --no-root --no-interaction
+	uv sync
 	npm install -g pnpm@10
 	pnpm install
 
 lint:
-	ruff check && ruff format
+	uv run ruff check && uv run ruff format
+	pnpm lint
 
 lint-check:
-	ruff check && ruff format --check
+	uv run ruff check && uv run ruff format --check
+	pnpm lint
 
 test:
-	poetry run pytest --disable-warnings
+	uv run pytest --disable-warnings
 
 # Docker
 
@@ -25,3 +27,16 @@ up-build:
 
 down:
 	docker compose down
+
+logs:
+	docker compose logs -f app
+
+bash:
+	docker compose exec app bash
+
+# Deploy
+
+deploy:
+	docker compose up --build -d
+	docker compose exec app python manage.py migrate --noinput
+	docker compose exec app python manage.py collectstatic --noinput

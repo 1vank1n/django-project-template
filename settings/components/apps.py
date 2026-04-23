@@ -11,14 +11,15 @@ DJANGO_APPS = [
 ]
 
 THIRD_APPS = [
+    'axes',
     'debug_toolbar',
     'django_extensions',
+    'django_vite',
     'extra_views',
     'health_check.cache',
     'health_check.db',
     'health_check.storage',
     'health_check',
-    'spurl',
 ]
 
 CUSTOM_APPS = [

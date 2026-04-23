@@ -26,8 +26,11 @@ media/
 logs/
 data/
 import/
-frontend/node_modules/
+node_modules/
 package-lock.json
+
+# 🔐 Secrets
+.env
 
 # 🧷 Docker специфичное
 nginx/ssl

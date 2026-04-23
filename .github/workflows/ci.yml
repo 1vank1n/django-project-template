@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install Python
+        run: uv python install
+
+      - name: Install Python deps
+        run: uv sync
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: true
+
+      - name: Ruff lint
+        run: uv run ruff check
+
+      - name: Ruff format check
+        run: uv run ruff format --check
+
+      - name: ESLint
+        run: pnpm lint
+
+      - name: Django migrations check
+        run: uv run python manage.py makemigrations --check --dry-run
+        env:
+          DEBUG: "off"
+          SECRET_KEY: ci-secret-key
+          DATABASE_URL: sqlite:///db.sqlite3
+
+      - name: Pytest
+        run: uv run pytest --disable-warnings
+        env:
+          DEBUG: "off"
+          SECRET_KEY: ci-secret-key
+          DATABASE_URL: sqlite:///db.sqlite3

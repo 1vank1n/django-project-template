@@ -6,54 +6,53 @@
 
 ## Технологии
 
-- **Python 3.12** и **Poetry** для управления зависимостями
-- **Django 4.2+** как веб-фреймворк
-- **Node.js 25**, **Gulp** и **Babel** для сборки фронтенда
+- **Python 3.13** и **uv** для управления зависимостями
+- **Django 5.2 LTS** как веб-фреймворк
+- **Node.js 25** и **Vite** для сборки фронтенда (через **django-vite**)
 - **ESLint** и **Ruff** для статического анализа
-- **Sass/Stylus** для оформления
+- **Sass** для стилей
+- **Gunicorn** для продакшн-сервинга WSGI
+- **django-axes** для защиты от брутфорса
 
 ## Быстрый старт
 
 1. Создайте проект из шаблона
    `django-admin startproject project_name --template=https://github.com/1vank1n/django-project-template/archive/master.zip`
-2. (Опционально) создайте виртуальное окружение в `.venv/`
-   `python -m venv .venv && source .venv/bin/activate`
-3. Установите зависимости Python и Node
+2. Установите зависимости Python и Node
    `make deps`
-4. Настройте переменные окружения `.env.template` → `.env`
-5. Примените миграции и запустите сервера разработки
+3. Настройте переменные окружения `.env.template` → `.env`
+4. Примените миграции и запустите сервера разработки
 
    ```
-   python manage.py migrate
-   python manage.py runserver   # backend
-   npm start                    # сборка фронтенда и livereload
+   uv run python manage.py migrate
+   uv run python manage.py runserver   # backend
+   pnpm dev                            # Vite dev server с HMR
    ```
 
 ## Развертывание
 
-- Укажите боевые значения в `.env` (`DEBUG=off`, `SECRET_KEY`, `DATABASE_URL`)
-- Соберите статические ресурсы: `npm run build`
-- Выполните `python manage.py collectstatic`
-- Запускайте под WSGI/ASGI-сервером (`gunicorn`, `uvicorn` и т.п.)
+- Укажите боевые значения в `.env` (`DEBUG=off`, `SECRET_KEY`, `DATABASE_URL`, `GUNICORN_*`)
+- Запустите `make deploy` — соберёт образ, поднимет контейнер, применит миграции, соберёт статику
 
 ## Структура проекта
 
 ```
-applications/   приложения Django (core, main)
-frontend/       исходники фронтенда (images, scripts, styles)
-settings/       настройки проекта Django
-tasks/          задачи Gulp
-templates/      шаблоны Django
-static/         собранные статические файлы (генерируются)
-logs/           журналы работы
+applications/     приложения Django (core, main)
+frontend/         исходники фронтенда (images, scripts, styles)
+settings/         настройки проекта (компоненты split-settings)
+templates/        шаблоны Django
+static/           собранная статика (генерируется Vite)
+logs/             журналы работы
+gunicorn.conf.py  конфигурация Gunicorn (читает GUNICORN_* из env)
+vite.config.js    конфигурация Vite
 ```
 
 ## Конфигурационные файлы
 
-- `.babelrc` — настройки Babel для современного JS
 - `.editorconfig` — правила форматирования редакторов
-- `.eslintrc.js` — правила ESLint для JavaScript
+- `eslint.config.js` — правила ESLint (flat config)
 - `.gitignore` — игнорируемые Git файлы
+- `.dockerignore` — файлы, исключаемые из контекста Docker-сборки
 - `.nvmrc` — версия Node.js для nvm
 - `.python-version` — версия Python для pyenv
 - `.env.template` — переменные окружения по умолчанию для разработки
