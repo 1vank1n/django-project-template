@@ -76,6 +76,10 @@ vite.config.js    Vite configuration
 - `.python-version` – Python version for pyenv
 - `.env.template` – default environment variables for local development
 
+## License
+
+MIT — see [LICENSE](LICENSE). Use it freely in commercial and open-source projects.
+
 ## Contact
 
 Questions? Create an issue or email lukyanets.ivan@gmail.com

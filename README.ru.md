@@ -76,6 +76,10 @@ vite.config.js    конфигурация Vite
 - `.python-version` — версия Python для pyenv
 - `.env.template` — переменные окружения по умолчанию для разработки
 
+## Лицензия
+
+MIT — см. [LICENSE](LICENSE). Использовать можно свободно, в том числе в коммерческих проектах.
+
 ## Контакты
 
 Вопросы? Создайте issue или напишите на lukyanets.ivan@gmail.com

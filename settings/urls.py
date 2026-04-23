@@ -3,7 +3,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
-from health_check import urls as health_urls
+from health_check.views import HealthCheckView
+
+
+class ProjectHealthCheckView(HealthCheckView):
+    checks = (
+        'health_check.checks.Cache',
+        'health_check.checks.Database',
+        'health_check.checks.Storage',
+    )
+
 
 # admin.site.site_header = 'Django Project Template'
 # admin.site.site_title = 'Django Project Template'
@@ -20,7 +29,8 @@ urlpatterns = [
     ),
     path(
         'health/',
-        include(health_urls),
+        ProjectHealthCheckView.as_view(),
+        name='health_check',
     ),
 ]
 

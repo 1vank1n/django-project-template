@@ -9,12 +9,12 @@
     "lint": "eslint frontend/"
   },
   "author": "Ivan Lukyanets <ivan@il-studio.ru>",
-  "license": "Commercial",
+  "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^10.0.0",
     "eslint": "^10.0.0",
     "globals": "^17.3.0",
     "sass": "^1.97.3",
-    "vite": "^7.0.0"
+    "vite": "^8.0.0"
   }
 }
