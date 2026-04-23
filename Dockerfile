@@ -10,7 +10,7 @@ COPY ./frontend ./frontend
 RUN pnpm build
 
 # 2. Backend
-FROM python:3.13-slim
+FROM python:3.14-slim
 WORKDIR /app
 
 ARG APP_VERSION
