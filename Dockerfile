@@ -1,5 +1,5 @@
 # 1. Frontend
-FROM node:25-alpine AS frontend_builder
+FROM node:26-alpine AS frontend_builder
 WORKDIR /app
 
 RUN npm install -g pnpm@10
