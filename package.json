@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint frontend/"
   },
+  "packageManager": "pnpm@11.8.0",
   "author": "Ivan Lukyanets <ivan@il-studio.ru>",
   "license": "MIT",
   "devDependencies": {
