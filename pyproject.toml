@@ -38,7 +38,7 @@ dev = [
     "ipython>=9.15.0,<10.0",
     "psycopg2-binary>=2.9,<3.0",
     "pytest>=9.1.1,<10.0",
-    "pytest-django>=4.11,<5.0",
+    "pytest-django>=4.13.0,<5.0",
     "ruff>=0.16.0,<0.17",
 ]
 
