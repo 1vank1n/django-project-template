@@ -7,8 +7,8 @@ A practical starting point for Django projects with a modern frontend build.
 ## Technologies
 
 - **Python 3.13** with **uv** for backend dependencies
-- **Django 5.2 LTS** as the web framework
-- **Node.js 25** with **Vite** for asset pipeline (integrated via **django-vite**)
+- **Django 6.1** as the web framework
+- **Node.js 26** with **Vite** for asset pipeline (integrated via **django-vite**)
 - **ESLint** and **Ruff** for linting
 - **Sass** for styles
 - **Gunicorn** for production WSGI serving
