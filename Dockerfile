@@ -3,8 +3,8 @@ FROM node:26-alpine AS frontend_builder
 WORKDIR /app
 
 RUN npm install -g pnpm@10
-COPY package.json pnpm-lock.yaml vite.config.js ./
-RUN pnpm install
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml vite.config.js ./
+RUN pnpm install --frozen-lockfile
 
 COPY ./frontend ./frontend
 RUN pnpm build
